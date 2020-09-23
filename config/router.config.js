@@ -46,13 +46,31 @@ export default [
               path: "configList",
               authority: 'config',
               name: "参数配置",
-              component: "@/pages/SettingManage/configView"
+              component: "@/pages/SettingManage/ConfigView"
             },
             {
               path: "pictureList",
               authority: 'picture',
               name: "图片配置",
               component: "@/pages/SettingManage/PictureView"
+            },
+            ]
+          },
+          {
+            path: 'product',
+            name: "产品中心",
+            authority: 'Product',
+            routes: [{
+              path: "goodsList",
+              authority: 'Goods',
+              name: "自营商品",
+              component: "@/pages/Product/Goods"
+            },
+            {
+              path: "ExchangeCard",
+              authority: 'ExchangeCard',
+              name: "兑换卡商品",
+              component: "@/pages/Product/ExchangeCard"
             },
             ]
           },

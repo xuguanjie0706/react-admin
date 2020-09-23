@@ -1,9 +1,9 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-09-22 18:02:11
+ * @lastTime: 2020-09-23 13:39:32
  * @LastAuthor: xgj
- * @FilePath: /admin/src/pages/SettingManage/configView/index.js
+ * @FilePath: /admin/src/pages/Product/ExchangeCard/index.js
  * @message:权益划转
  */
 import React, { useEffect, useState, useCallback } from 'react';
@@ -17,12 +17,13 @@ import Search from './Search';
 import ModalForm from './Form';
 import moment from 'moment';
 import config from '@/utils/config';
+import { STATUS_USE_ENUM } from '@/utils/enum';
 
 
-const fileName = 'Config';
+const fileName = 'ExchangeCard';
 
 const Custom = (props) => {
-  const { defaultSearchData } = props;
+  const { defaultSearchData, _id: memberId } = props;
 
   /* ******* 设置属性 *******  */
   const [modelChild, setModelChild] = useState(null); // 新增弹窗
@@ -71,7 +72,9 @@ const Custom = (props) => {
   /* ******* 设置方法 ******* */
   /* 初始化 */
   const initLoad = async () => {
-
+    // api[fileName].addSome({ count: 2 }).then(r => {
+    //   console.log(r);
+    // });
   };
   /* ******* 监听 ******* */
   useEffect(() => {
@@ -103,25 +106,52 @@ const Custom = (props) => {
       align: 'center',
       width: 100,
     },
-
     {
-      title: '内容',
+      title: '描述',
       dataIndex: 'value',
       key: 'value',
       align: 'center',
     },
-
     {
-      title: '单位',
-      dataIndex: 'unit',
-      key: 'unit',
+      title: '卡号',
+      dataIndex: 'card',
+      key: 'card',
       align: 'center',
+    },
+    {
+      title: '密码',
+      dataIndex: 'password',
+      key: 'password',
+      align: 'center',
+    },
+    {
+      title: '兑换商品',
+      dataIndex: '_goods',
+      key: '_goods',
+      align: 'center',
+      render: text => text.map(item => item.name)
+    },
+    {
+      title: '过期时间',
+      dataIndex: 'overtime',
+      key: 'overtime',
+      align: 'center',
+      width: 120,
+      render: text => text && moment(text).format('YYYY-MM-DD HH:mm')
+    },
+    {
+      title: '状态',
+      dataIndex: 'status',
+      key: 'status',
+      align: 'center',
+      render: text => STATUS_USE_ENUM[text]
     },
     {
       title: '新增时间',
       dataIndex: 'createdAt',
       key: 'createdAt',
       align: 'center',
+      width: 120,
       render: text => text && moment(text).format('YYYY-MM-DD HH:mm')
     },
     {
@@ -149,7 +179,7 @@ const Custom = (props) => {
     <>
       <SearchTable
         rowKey="_id"
-        request={api[fileName].pagesimple}
+        request={api[fileName].page}
         loading
         columns={columns}
         onTableRef={tableRef}
@@ -160,7 +190,8 @@ const Custom = (props) => {
         onRef={modelRef}
         title={!defaultData._id ? '新增' : '编辑'}
         defaultData={defaultData}
-        request={api[fileName].editoradd}
+        memberId={memberId}
+        request={!defaultData._id ? api[fileName].addSome : api[fileName].editoradd}
         callback={() => {
           tableChild && tableChild.initData();
         }}
@@ -169,4 +200,6 @@ const Custom = (props) => {
   );
 };
 
-export default Custom;
+export default connect(({ user }) => ({
+  _id: user._id
+}))(Custom);

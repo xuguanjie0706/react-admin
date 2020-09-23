@@ -1,5 +1,5 @@
 import request from '../../utils/request';
-
+const gateway = 'upload';
 /**
  * @memberof apis
  * @description: 描述方法
@@ -12,8 +12,9 @@ import request from '../../utils/request';
 
 export const upload = ({ data, onUploadProgress }) => {
   return request.post({
-    url: 'comm/upload_file',
+    url: 'uploadFileStream',
     data,
     onUploadProgress,
+    gateway
   });
 };

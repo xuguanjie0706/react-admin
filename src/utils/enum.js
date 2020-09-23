@@ -65,3 +65,32 @@ export const USER_STATUS_ENUM = {
 };
 
 
+/**
+ * @memberof enum
+ * @description 单位
+ * @function UNIT_ENUM
+ * @param {number}  1 无
+ * @param {number}  2 元
+ * @param {number}  3 天
+ */
+
+export const UNIT_ENUM = {
+  1: '无',
+  2: '元',
+  3: '天'
+};
+
+/**
+ * @memberof enum
+ * @description 单位
+ * @function UNIT_ENUM
+ * @param {number}  1 无
+ * @param {number}  2 元
+ * @param {number}  3 天
+ */
+
+export const STATUS_USE_ENUM = {
+  0: '已使用',
+  1: '正常',
+};
+

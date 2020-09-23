@@ -5,7 +5,6 @@
  */
 
 
-
 /**
  * @memberof utils
  * @description 防抖
@@ -88,7 +87,7 @@ export const randomString = () => {
  */
 export const arraySort = (arr = []) => {
   return arr.sort((x, y) => x - y);
-}
+};
 
 
 /**

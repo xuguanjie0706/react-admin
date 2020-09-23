@@ -5,7 +5,8 @@ const Model = {
   namespace: 'user',
   state: {
     status: false,
-    roles: []
+    roles: [],
+    _id: null
   },
   effects: {
     *login({ payload }, { call, put }) {
@@ -15,6 +16,11 @@ const Model = {
           type: 'changeStatus',
           payload: true,
           key: 'status',
+        });
+        yield put({
+          type: 'changeStatus',
+          payload: response._id,
+          key: '_id',
         });
         let RoleArr = [];
         response._role.forEach(item => {
@@ -38,6 +44,11 @@ const Model = {
           type: 'changeStatus',
           payload: true,
           key: 'status',
+        });
+        yield put({
+          type: 'changeStatus',
+          payload: response._id,
+          key: '_id',
         });
         let RoleArr = [];
         response._role.forEach(item => {

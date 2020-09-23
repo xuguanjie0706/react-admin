@@ -5,10 +5,10 @@
  * @description 图片上传
  * @function PeopleCardUpload
  * @param {object} value 数据
- * @param {function} onChange 函数 
+ * @param {function} onChange 函数
  * @param {string} desc  描述
  * @param {object} styles 样式
- * @default 身份证正面 
+ * @default 身份证正面
  * @return 组件
  * @example <PeopleCardUpload />
  */
@@ -21,6 +21,7 @@ import './index.less';
 import api from '@/api';
 import compass from './compass';
 import reloadImg from './assets/btn_reupload.png';
+import config from '@/utils/config';
 
 const PeopleCardUpload = props => {
   const {
@@ -39,7 +40,7 @@ const PeopleCardUpload = props => {
   const [status, setStatus] = useState('active');
 
   useEffect(() => {
-    if (value) setImageUrl(value);
+    if (value) setImageUrl(config.url + value);
   }, [value]);
 
   const onUploadProgress = progressEvent => {
@@ -57,33 +58,33 @@ const PeopleCardUpload = props => {
     const { file } = e;
     if (checkSize) {
       const [width, height] = await new Promise((resolve) => {
-        var img = new Image();
-        var _URL = window.URL || window.webkitURL;
+        const img = new Image();
+        const _URL = window.URL || window.webkitURL;
         img.onload = function () {
-          resolve([this.width, this.height])
+          resolve([this.width, this.height]);
         };
         img.src = _URL.createObjectURL(file);
-      })
+      });
       // console.log(width, height, checkSize);
       if (width !== checkSize.width || height !== checkSize.height) {
-        return message.error("请上传正确尺寸的图片！")
+        return message.error('请上传正确尺寸的图片！');
       }
     }
 
 
     const smallFile = await compass(file, 0.8);
-    console.log(smallFile);
 
     try {
       const formData = new FormData();
-      formData.append('file', smallFile);
+      formData.append('files', smallFile);
       setIsShow(true);
       setStatus('active');
       const r = await api.File.upload({ data: formData, onUploadProgress });
       // console.log(r);
       if (r) {
-        const { absoluteUrl } = r;
-        onChange(absoluteUrl);
+        const absoluteUrl = config.url + r;
+        console.log(absoluteUrl);
+        onChange(r);
         setImageUrl(absoluteUrl);
       } else {
         setStatus('exception');

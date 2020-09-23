@@ -1,9 +1,9 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-09-22 18:02:11
+ * @lastTime: 2020-09-23 10:21:06
  * @LastAuthor: xgj
- * @FilePath: /admin/src/pages/SettingManage/configView/index.js
+ * @FilePath: /admin/src/pages/Product/Goods/index.js
  * @message:权益划转
  */
 import React, { useEffect, useState, useCallback } from 'react';
@@ -19,10 +19,10 @@ import moment from 'moment';
 import config from '@/utils/config';
 
 
-const fileName = 'Config';
+const fileName = 'Goods';
 
 const Custom = (props) => {
-  const { defaultSearchData } = props;
+  const { defaultSearchData, _id: memberId } = props;
 
   /* ******* 设置属性 *******  */
   const [modelChild, setModelChild] = useState(null); // 新增弹窗
@@ -76,6 +76,7 @@ const Custom = (props) => {
   /* ******* 监听 ******* */
   useEffect(() => {
     initLoad();
+    console.log(props);
   }, []);
   /* ******* 监听 ******* */
 
@@ -103,19 +104,18 @@ const Custom = (props) => {
       align: 'center',
       width: 100,
     },
-
     {
-      title: '内容',
+      title: '描述',
       dataIndex: 'value',
       key: 'value',
       align: 'center',
     },
-
     {
-      title: '单位',
-      dataIndex: 'unit',
-      key: 'unit',
+      title: '图片',
+      dataIndex: 'img',
+      key: 'img',
       align: 'center',
+      render: text => <img width="100" height="100" src={config.url + text} alt="" />
     },
     {
       title: '新增时间',
@@ -160,6 +160,7 @@ const Custom = (props) => {
         onRef={modelRef}
         title={!defaultData._id ? '新增' : '编辑'}
         defaultData={defaultData}
+        memberId={memberId}
         request={api[fileName].editoradd}
         callback={() => {
           tableChild && tableChild.initData();
@@ -169,4 +170,6 @@ const Custom = (props) => {
   );
 };
 
-export default Custom;
+export default connect(({ user }) => ({
+  _id: user._id
+}))(Custom);
