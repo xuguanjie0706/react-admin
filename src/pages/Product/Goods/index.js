@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-09-23 10:21:06
+ * @lastTime: 2020-09-23 14:24:18
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Product/Goods/index.js
  * @message:权益划转
@@ -149,10 +149,11 @@ const Custom = (props) => {
     <>
       <SearchTable
         rowKey="_id"
-        request={api[fileName].pagesimple}
+        request={api[fileName].page}
         loading
         columns={columns}
         onTableRef={tableRef}
+        isReset={false}
         defaultSearchData={defaultSearchData}
       />
       <ModalForm

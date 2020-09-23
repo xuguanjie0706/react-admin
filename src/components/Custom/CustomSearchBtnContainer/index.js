@@ -5,6 +5,9 @@ import { Button, Form, Row, Col } from 'antd';
 
 const CustomSearchBtnContainer = WrappedComponent1 => {
   const Index = props => {
+    // console.log(props);
+    const { form, isReset = false } = props;
+    const { resetFields } = form;
     return (
       <Row>
         <Col
@@ -28,6 +31,14 @@ const CustomSearchBtnContainer = WrappedComponent1 => {
             >
               筛选
             </Button>
+            {isReset && <Button
+              type="ghost"
+              style={{ marginRight: 10, width: 80 }}
+              onClick={() => resetFields()}
+            >
+              清空
+            </Button>}
+
             {WrappedComponent1 && <WrappedComponent1 {...props} />}
           </Form.Item>
         </Col>

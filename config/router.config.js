@@ -34,9 +34,17 @@ export default [
             },
             {
               path: "userList",
+              authority: 'user',
               name: "用户管理",
               component: "@/pages/System/User"
-            },]
+            },
+            {
+              path: "merchantList",
+              authority: 'merchant',
+              name: "商户管理",
+              component: "@/pages/System/Merchant"
+            },
+            ]
           },
           {
             path: 'setting',

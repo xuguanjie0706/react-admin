@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-09-23 13:39:32
+ * @lastTime: 2020-09-23 15:11:04
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Product/ExchangeCard/index.js
  * @message:权益划转
@@ -15,6 +15,7 @@ import api from '@/api';
 import { connect } from 'umi';
 import Search from './Search';
 import ModalForm from './Form';
+import SendForm from './Send';
 import moment from 'moment';
 import config from '@/utils/config';
 import { STATUS_USE_ENUM } from '@/utils/enum';
@@ -27,6 +28,7 @@ const Custom = (props) => {
 
   /* ******* 设置属性 *******  */
   const [modelChild, setModelChild] = useState(null); // 新增弹窗
+  const [sendChild, setSendChild] = useState(null); // 配送弹窗
   const [tableChild, setTableChild] = useState(null); // 列表弹窗
   const [defaultData, setDefaultData] = useState({ id: 0 }); // 新增编辑默认值
 
@@ -35,6 +37,9 @@ const Custom = (props) => {
   /* ******* 设置实例 *******  */
   const modelRef = (ref) => {
     setModelChild(ref);
+  };
+  const sendRef = (ref) => {
+    setSendChild(ref);
   };
 
   const tableRef = (ref) => {
@@ -54,6 +59,13 @@ const Custom = (props) => {
     }
     if (modelChild) {
       modelChild.handleShow();
+    }
+  };
+
+  const handleSend = async (item) => {
+    setDefaultData(item);
+    if (sendChild) {
+      sendChild.handleShow();
     }
   };
 
@@ -132,12 +144,11 @@ const Custom = (props) => {
       render: text => text.map(item => item.name)
     },
     {
-      title: '过期时间',
-      dataIndex: 'overtime',
-      key: 'overtime',
+      title: '单号',
+      dataIndex: 'sendNumber',
+      key: 'sendNumber',
       align: 'center',
-      width: 120,
-      render: text => text && moment(text).format('YYYY-MM-DD HH:mm')
+      render: text => text ? text : '-'
     },
     {
       title: '状态',
@@ -145,6 +156,14 @@ const Custom = (props) => {
       key: 'status',
       align: 'center',
       render: text => STATUS_USE_ENUM[text]
+    },
+    {
+      title: '过期时间',
+      dataIndex: 'overtime',
+      key: 'overtime',
+      align: 'center',
+      width: 120,
+      render: text => text && moment(text).format('YYYY-MM-DD HH:mm')
     },
     {
       title: '新增时间',
@@ -159,6 +178,12 @@ const Custom = (props) => {
       align: 'center',
       key: 'action',
       render: (text) => <>
+        {text.status !== '1' && <><Button type="link" onClick={() => handleSend(text)}>
+          填单
+        </Button>
+          <Divider type="vertical" ></Divider></>
+        }
+
         <Button type="link" onClick={() => handleEdit(text)}>
           编辑
         </Button>
@@ -170,7 +195,6 @@ const Custom = (props) => {
             删除
         </Button>
         </Popconfirm>
-
       </>,
     },
   ];
@@ -192,6 +216,16 @@ const Custom = (props) => {
         defaultData={defaultData}
         memberId={memberId}
         request={!defaultData._id ? api[fileName].addSome : api[fileName].editoradd}
+        callback={() => {
+          tableChild && tableChild.initData();
+        }}
+      />
+      <SendForm
+        formItemLayout={{ labelCol: { span: 6 }, wrapperCol: { span: 16 } }}
+        onRef={sendRef}
+        title={'编辑'}
+        defaultData={defaultData}
+        request={api[fileName].editoradd}
         callback={() => {
           tableChild && tableChild.initData();
         }}

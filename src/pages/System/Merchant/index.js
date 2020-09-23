@@ -1,9 +1,9 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-09-23 13:48:49
+ * @lastTime: 2020-09-23 14:14:28
  * @LastAuthor: xgj
- * @FilePath: /admin/src/pages/System/User/index.js
+ * @FilePath: /admin/src/pages/System/Merchant/index.js
  * @message:权益划转
  */
 import React, { useEffect, useState, useCallback } from 'react';
@@ -17,10 +17,11 @@ import Search from './Search';
 import ModalForm from './Form';
 import md5 from 'md5';
 import { USER_STATUS_ENUM } from '@/utils/enum';
+import moment from 'moment';
 const colorList = ['magenta', 'red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan'];
 
 const Custom = (props) => {
-  const { defaultSearchData = { isUser: 1 } } = props;
+  const { defaultSearchData = { isUser: 2 } } = props;
 
   /* ******* 设置属性 *******  */
   const [modelChild, setModelChild] = useState(null); // 新增弹窗
@@ -114,6 +115,19 @@ const Custom = (props) => {
       render: text => USER_STATUS_ENUM[text]
     },
     {
+      title: '过期时间',
+      dataIndex: 'overtime',
+      key: 'overtime',
+      render: text => text && moment(text).format('YYYY-MM-DD HH:mm')
+    },
+    {
+      title: '添加时间',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+      align: 'center',
+      render: text => text && moment(text).format('YYYY-MM-DD HH:mm')
+    },
+    {
       title: '操作',
       align: 'center',
       key: 'action',
@@ -129,7 +143,6 @@ const Custom = (props) => {
             删除
         </Button>
         </Popconfirm>
-
       </>,
     },
   ];

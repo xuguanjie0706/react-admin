@@ -90,7 +90,8 @@ export const UNIT_ENUM = {
  */
 
 export const STATUS_USE_ENUM = {
-  0: '已使用',
   1: '正常',
+  2: '已兑换',
+  3: '已完成'
 };
 
