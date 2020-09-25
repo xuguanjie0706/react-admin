@@ -3,9 +3,13 @@ export default [
     path: '/',
     component: '@/layouts/SecurityLayout',
     routes: [
+      // {
+      //   path: 'login',
+      //   component: '@/layouts/Login',
+      // },
       {
         path: 'login',
-        component: '@/layouts/Login',
+        component: '@/layouts/Register',
       },
       {
         path: '/',
@@ -79,6 +83,30 @@ export default [
               authority: 'ExchangeCard',
               name: "兑换卡商品",
               component: "@/pages/Product/ExchangeCard"
+            },
+            ]
+          },
+          {
+            path: 'MemberCenter',
+            name: "用户中心",
+            authority: 'memberCenter',
+            routes: [{
+              path: "NewStudy",
+              authority: 'study',
+              name: "新手教程",
+              component: "@/pages/MemberCenter/NewStudy"
+            },
+            {
+              path: "MakeMoney",
+              authority: 'money',
+              name: "充值",
+              component: "@/pages/MemberCenter/MakeMoney"
+            },
+            {
+              path: "MemberSetting",
+              authority: 'custom',
+              name: "个性化配置",
+              component: "@/pages/MemberCenter/MemberSetting"
             },
             ]
           },

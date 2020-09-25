@@ -49,7 +49,7 @@ const CustomModalContainer = WrappedComponent1 => {
 
     hangeClick = async () => {
       const { request, callback, isClearn = true, errCallback } = this.props;
-
+      console.log(this.ModalForm.getFieldsValue());
       try {
         const values = await this.ModalForm.validateFields();
         // console.log(values);
@@ -58,9 +58,9 @@ const CustomModalContainer = WrappedComponent1 => {
         });
         // console.log(request);
         if (request) {
-          console.log(values);
+          // console.log(values);
           const r = await request(values);
-          console.log(r);
+          // console.log(r);
           this.setState({
             loading: false,
             visible: !r,

@@ -37,6 +37,14 @@ const Model = {
         return false;
       }
     },
+    *addbyself({ payload }, { call, put }) {
+      const response = yield call(api.User.addbyself, payload);
+      if (response) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     *check({ payload }, { call, put }) {
       const response = yield call(api.User.check, payload);
       if (response) {

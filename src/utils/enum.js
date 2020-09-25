@@ -95,3 +95,23 @@ export const STATUS_USE_ENUM = {
   3: '已完成'
 };
 
+/**
+ * @memberof enum
+ * @description 快递公司
+ * @function SEND_NAME_ENUM
+ * @param {number}  1 无
+ * @param {number}  2 元
+ * @param {number}  3 天
+ */
+export const SEND_NAME_ENUM = {
+  1: 'EMS快递',
+  2: '申通快递',
+  3: '顺丰快递',
+  4: '圆通快递',
+  5: '韵达快递',
+  6: '百世汇通快递',
+  7: '天天快递',
+  8: '中通快递',
+  9: '宅急送快递',
+  10: '其他快递',
+};

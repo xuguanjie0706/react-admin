@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-09-23 15:11:04
+ * @lastTime: 2020-09-24 18:53:34
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Product/ExchangeCard/index.js
  * @message:权益划转
@@ -22,6 +22,10 @@ import { STATUS_USE_ENUM } from '@/utils/enum';
 
 
 const fileName = 'ExchangeCard';
+
+const AddressView = ({ mobile, people, mainArea, area }) => {
+  return <span style={{ textAlign: 'left', whiteSpace: 'pre-line' }}>{`收货人:${people}\n电话:${mobile}\n地址:${area.join('')}${mainArea}`}</span>;
+};
 
 const Custom = (props) => {
   const { defaultSearchData, _id: memberId } = props;
@@ -117,46 +121,63 @@ const Custom = (props) => {
       key: 'name',
       align: 'center',
       width: 100,
-    },
-    {
-      title: '描述',
-      dataIndex: 'value',
-      key: 'value',
-      align: 'center',
-    },
-    {
+      fixed: 'left'
+    }, {
       title: '卡号',
       dataIndex: 'card',
       key: 'card',
       align: 'center',
+      width: 200,
+      fixed: 'left'
     },
     {
       title: '密码',
       dataIndex: 'password',
       key: 'password',
       align: 'center',
+      width: 150,
     },
     {
-      title: '兑换商品',
+      title: '描述',
+      dataIndex: 'value',
+      key: 'value',
+      align: 'center',
+      width: 120,
+    },
+
+    {
+      title: '可兑换商品',
       dataIndex: '_goods',
       key: '_goods',
       align: 'center',
+      width: 120,
       render: text => text.map(item => item.name)
     },
     {
-      title: '单号',
-      dataIndex: 'sendNumber',
-      key: 'sendNumber',
+      title: '已兑换商品',
+      dataIndex: '_usegoods',
+      key: '_usegoods',
       align: 'center',
-      render: text => text ? text : '-'
+      width: 120,
+      render: text => text ? text.name : '-'
     },
     {
-      title: '状态',
-      dataIndex: 'status',
-      key: 'status',
+      title: '收货信息',
+      dataIndex: 'address',
+      key: 'address',
       align: 'center',
-      render: text => STATUS_USE_ENUM[text]
+      width: 250,
+      render: text => text ? AddressView(text) : '-'
     },
+    {
+      title: '单号',
+      dataIndex: 'sendInfo',
+      key: 'sendInfo',
+      align: 'center',
+      width: 250,
+      render: text => text ? text.map(item => <div key={item.key}>{`${item.sendName}单号:${item.sendNumber},备注:${item.remarks}`}</div>) : '-'
+    },
+
     {
       title: '过期时间',
       dataIndex: 'overtime',
@@ -174,9 +195,20 @@ const Custom = (props) => {
       render: text => text && moment(text).format('YYYY-MM-DD HH:mm')
     },
     {
+      title: '状态',
+      dataIndex: 'status',
+      key: 'status',
+      align: 'center',
+      fixed: 'right',
+      width: 80,
+      render: text => STATUS_USE_ENUM[text]
+    },
+    {
       title: '操作',
       align: 'center',
       key: 'action',
+      fixed: 'right',
+      width: 240,
       render: (text) => <>
         {text.status !== '1' && <><Button type="link" onClick={() => handleSend(text)}>
           填单
@@ -202,9 +234,11 @@ const Custom = (props) => {
   return (
     <>
       <SearchTable
+        scroll={{ x: 'max-content' }}
         rowKey="_id"
         request={api[fileName].page}
         loading
+        isReset={true}
         columns={columns}
         onTableRef={tableRef}
         defaultSearchData={defaultSearchData}
@@ -224,6 +258,7 @@ const Custom = (props) => {
         formItemLayout={{ labelCol: { span: 6 }, wrapperCol: { span: 16 } }}
         onRef={sendRef}
         title={'编辑'}
+        width={800}
         defaultData={defaultData}
         request={api[fileName].editoradd}
         callback={() => {

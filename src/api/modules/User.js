@@ -129,3 +129,40 @@ export const check = (data = {}) => {
   });
 };
 
+/**
+ * @memberof apis
+ * @description: 商户新增
+ * @function addbyself
+ * @param {type}  传入参数
+ * @author 许(后端对接人名称)
+ * @see {@link https://t.com/doc/MrD0qNADV}
+ * @return {object} 接口对象
+ */
+
+export const addbyself = (data = {}) => {
+  return request.post({
+    url: 'addbyself',
+    data,
+    gateway
+  });
+};
+
+/**
+ * @memberof apis
+ * @description: 获取验证码
+ * @function getVerfication
+ * @param {type}  传入参数
+ * @author 许(后端对接人名称)
+ * @see {@link https://t.com/doc/MrD0qNADV}
+ * @return {object} 接口对象
+ */
+
+export const getVerfication = (data = {}) => {
+  return request.post({
+    url: 'getVerfication',
+    data,
+    gateway
+  });
+};
+
+

@@ -6,11 +6,8 @@ import loginIcon from './assets/icon_logo.png';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { connect } from 'umi';
 import md5 from 'md5';
-// import { throttle } from "@/utils"
 
 const LoginView = props => {
-  // console.log(props);
-
   const { history, dispatch } = props;
   const [form] = Form.useForm();
 
