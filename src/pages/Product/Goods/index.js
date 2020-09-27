@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-09-25 15:36:23
+ * @lastTime: 2020-09-25 16:33:24
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Product/Goods/index.js
  * @message:权益划转
@@ -159,7 +159,6 @@ const Custom = (props) => {
       <ModalForm
         formItemLayout={{ labelCol: { span: 6 }, wrapperCol: { span: 16 } }}
         onRef={modelRef}
-        visible={true}
         title={!defaultData._id ? '新增' : '编辑'}
         defaultData={defaultData}
         memberId={memberId}

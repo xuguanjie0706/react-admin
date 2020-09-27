@@ -55,11 +55,12 @@ const CustomForm = (props) => {
           <Input allowClear placeholder="请输入描述" />
         </Form.Item>
         <Form.Item
+          extra="推荐尺寸为160*160"
           label="首图"
           name="img"
           rules={[{ required: true, message: '请上传图片' }]}
         >
-          <CustomUpload desc="图片上传" />
+          <CustomUpload styles={{ width: 160, height: 160 }} desc="图片上传" />
         </Form.Item>
         <Form.Item
           label="图片详情"
@@ -76,7 +77,6 @@ const CustomForm = (props) => {
           <InputNumber style={{ width: 200 }} allowClear placeholder="请输入价格" />
         </Form.Item></>
     }
-
     </>
   );
 };

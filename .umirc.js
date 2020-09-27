@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-07-08 16:21:43
- * @lastTime: 2020-09-17 19:18:59
+ * @lastTime: 2020-09-25 23:48:32
  * @LastAuthor: xgj
  * @FilePath: /admin/.umirc.js
  * @message:
@@ -16,9 +16,9 @@ const { REACT_APP_ENV } = process.env;
 console.log(REACT_APP_ENV);
 
 export default defineConfig({
-  // nodeModulesTransform: {
-  //   type: 'none',
-  // },
+  nodeModulesTransform: {
+    type: 'none',
+  },
   hash: true, //开启打包文件的hash值后缀
   antd: {},
   dva: {
@@ -49,7 +49,7 @@ export default defineConfig({
   },
   // base: '/jzky/#/',
   // publicPath: "./",
-  publicPath: '/jzky/',
+  publicPath: './',
   history: {
     type: 'hash',
   },

@@ -54,6 +54,13 @@ const CustomForm = (props) => {
         <Input allowClear placeholder="请输入描述" />
       </Form.Item>
       <Form.Item
+        label="编号"
+        name="code"
+      // rules={[{ required: true, message: '请输入名称' }]}
+      >
+        <Input allowClear placeholder="请输入编号" maxLength={4} />
+      </Form.Item>
+      <Form.Item
         label="商品"
         name="_goods"
         rules={[{ required: true, message: '请选择商品' }]}

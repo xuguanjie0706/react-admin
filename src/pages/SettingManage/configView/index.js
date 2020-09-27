@@ -1,9 +1,9 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-09-22 18:02:11
+ * @lastTime: 2020-09-25 16:58:59
  * @LastAuthor: xgj
- * @FilePath: /admin/src/pages/SettingManage/configView/index.js
+ * @FilePath: /admin/src/pages/SettingManage/ConfigView/index.js
  * @message:权益划转
  */
 import React, { useEffect, useState, useCallback } from 'react';
@@ -140,7 +140,6 @@ const Custom = (props) => {
             删除
         </Button>
         </Popconfirm>
-
       </>,
     },
   ];

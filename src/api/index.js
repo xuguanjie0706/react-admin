@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-06-08 13:52:17
- * @lastTime: 2020-09-23 10:27:53
+ * @lastTime: 2020-09-27 15:12:23
  * @LastAuthor: xgj
  * @FilePath: /admin/src/api/index.js
  * @message:
@@ -21,6 +21,8 @@ import * as Picture from './modules/Picture';
 import * as Config from './modules/Config';
 import * as Goods from './modules/Goods';
 import * as ExchangeCard from './modules/ExchangeCard';
+import * as MemberSetting from './modules/MemberSetting';
+import * as Weixin from './modules/Weixin';
 
 
 export default {
@@ -32,4 +34,6 @@ export default {
   Config,
   Goods,
   ExchangeCard,
+  MemberSetting,
+  Weixin,
 };

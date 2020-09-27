@@ -6,7 +6,8 @@ const Model = {
   state: {
     status: false,
     roles: [],
-    _id: null
+    _id: null,
+    data: {}
   },
   effects: {
     *login({ payload }, { call, put }) {
@@ -16,6 +17,11 @@ const Model = {
           type: 'changeStatus',
           payload: true,
           key: 'status',
+        });
+        yield put({
+          type: 'changeStatus',
+          payload: response,
+          key: 'data',
         });
         yield put({
           type: 'changeStatus',
@@ -55,6 +61,11 @@ const Model = {
         });
         yield put({
           type: 'changeStatus',
+          payload: response,
+          key: 'data',
+        });
+        yield put({
+          type: 'changeStatus',
           payload: response._id,
           key: '_id',
         });
@@ -62,7 +73,7 @@ const Model = {
         response._role.forEach(item => {
           RoleArr = [...RoleArr, ...item.content];
         });
-        console.log(RoleArr);
+        // console.log(RoleArr);
         yield put({
           type: 'changeStatus',
           payload: RoleArr,

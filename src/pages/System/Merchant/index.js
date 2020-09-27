@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-09-23 14:14:28
+ * @lastTime: 2020-09-25 23:40:48
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/System/Merchant/index.js
  * @message:权益划转
@@ -103,6 +103,13 @@ const Custom = (props) => {
       width: 100,
     },
     {
+      title: '手机',
+      dataIndex: 'phone',
+      key: 'phone',
+      align: 'center',
+      width: 100,
+    },
+    {
       title: '角色名称',
       dataIndex: '_role',
       key: '_role',
@@ -113,6 +120,12 @@ const Custom = (props) => {
       dataIndex: 'isUser',
       key: 'isUser',
       render: text => USER_STATUS_ENUM[text]
+    },
+    {
+      title: '会员',
+      dataIndex: 'status',
+      key: 'status',
+      render: text => text ? '是' : '否'
     },
     {
       title: '过期时间',
