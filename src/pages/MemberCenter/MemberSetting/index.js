@@ -3,12 +3,14 @@ import { Card, Descriptions, Form, Input, Button, message } from 'antd';
 import QRCode from 'qrcode.react';
 import { connect } from 'umi';
 import api from '@/api';
+import moment from 'moment';
 import CustomUpload from '@/components/Custom/CustomApiFormItem/PeopleCardUpload';
+import config from '@/utils/config';
 
 const MakeMoney = (props) => {
   console.log(props);
 
-  const { user: { _id, phone } } = props;
+  const { user: { _id, phone, overtime } } = props;
   // const [data, setData] = useState({});
 
   const [form] = Form.useForm();
@@ -18,6 +20,7 @@ const MakeMoney = (props) => {
     const r = await api.MemberSetting.getonebysimple({ _member: _id });
     if (r && r !== true) {
       // setData(r);
+      // console.log(r);
       setFieldsValue(r);
     }
   };
@@ -26,16 +29,17 @@ const MakeMoney = (props) => {
   }, []);
 
   const onFinish = async (values) => {
-    console.log(values);
+    // console.log(values);
     const r = await api.MemberSetting.editoradd(values);
     if (r) {
+      setFieldsValue(r);
       message.success('更新成功！');
     }
   };
 
   return (
     <Card title="个性化配置">
-      <Form form={form} onFinish={onFinish}>
+      <Form layout="inline" form={form} onFinish={onFinish}>
         <Form.Item name="_id" hidden >
           <Input />
         </Form.Item>
@@ -45,25 +49,35 @@ const MakeMoney = (props) => {
         <Descriptions bordered column={2}>
           <Descriptions.Item label="软件标题" >
             <Form.Item name="name" >
-              <Input.TextArea placeholder="请输入软件标题" />
+              <Input placeholder="请输入软件标题" />
             </Form.Item>
           </Descriptions.Item>
           <Descriptions.Item label="客服联系方式" >
             <Form.Item name="phone" >
-              <Input.TextArea placeholder="请输入客服联系方式" />
+              <Input placeholder="请输入客服联系方式" />
             </Form.Item>
           </Descriptions.Item>
+          <Descriptions.Item label="会员联系方式" >
+            {phone}
+          </Descriptions.Item>
+          <Descriptions.Item label="会员到期时间" >
+            {moment(overtime).format('YYYY-MM-DD HH:mm:ss')}
+          </Descriptions.Item>
+          <Descriptions.Item label="微信端地址" span={4} >
+            {config.webUrl + _id}
+          </Descriptions.Item>
+
           {/* <Descriptions.Item label="提示信息" >
             <Form.Item>
               <Input.TextArea placeholder="请输入提示信息" />
             </Form.Item>
           </Descriptions.Item> */}
-          <Descriptions.Item label="软件背景图" span={1}>
+          <Descriptions.Item label="软件背景图" span={2}>
             <Form.Item name="img">
               <CustomUpload styles={{ width: 160, height: 160 }} desc="图片上传" />
             </Form.Item>
           </Descriptions.Item>
-          <Descriptions.Item label="扫码绑定微信" span={1}>
+          <Descriptions.Item label="扫码绑定微信" span={2}>
             <QRCode
               id='qrid'
               value={`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx45d398e7c87a97f6&redirect_uri=http%3A%2F%2Fpick.yystart.com%2Fmobile%2F%23%2Fhome&response_type=code&scope=snsapi_base&state=${_id}#wechat_redirect`} // value参数为生成二维码的链接

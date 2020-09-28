@@ -77,7 +77,8 @@ export const USER_STATUS_ENUM = {
 export const UNIT_ENUM = {
   1: '无',
   2: '元',
-  3: '天'
+  3: '天',
+  4: '分'
 };
 
 /**

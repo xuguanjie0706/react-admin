@@ -3,23 +3,24 @@ export default [
     path: '/',
     component: '@/layouts/SecurityLayout',
     routes: [
-      // {
-      //   path: 'login',
-      //   component: '@/layouts/Login',
-      // },
+      {
+        path: 'forget',
+        component: '@/layouts/Login/Forget',
+      },
       {
         path: 'login',
-        component: '@/layouts/Register',
+        component: '@/layouts/Login/Register',
       },
       {
         path: '/',
         component: '@/layouts/index',
         routes: [
-          // {
-          //   path: 'home',
-          //   name: "首页",
-          //   component: '@/pages/Home',
-          // },
+          {
+            path: '/',
+            name: "首页",
+            authority: 'home',
+            component: '@/pages/Home',
+          },
           {
             path: 'system',
             name: "系统管理",
@@ -60,12 +61,12 @@ export default [
               name: "参数配置",
               component: "@/pages/SettingManage/ConfigView"
             },
-            {
-              path: "pictureList",
-              authority: 'picture',
-              name: "图片配置",
-              component: "@/pages/SettingManage/PictureView"
-            },
+              // {
+              //   path: "pictureList",
+              //   authority: 'picture',
+              //   name: "图片配置",
+              //   component: "@/pages/SettingManage/PictureView"
+              // },
             ]
           },
           {
@@ -83,6 +84,18 @@ export default [
               authority: 'ExchangeCard',
               name: "兑换卡商品",
               component: "@/pages/Product/ExchangeCard"
+            },
+            ]
+          },
+          {
+            path: 'order',
+            name: "订单中心",
+            authority: 'order',
+            routes: [{
+              path: "memberPay",
+              authority: 'memberPay',
+              name: "会员续费",
+              component: "@/pages/Order/MemberPay"
             },
             ]
           },

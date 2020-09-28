@@ -96,6 +96,24 @@ export const getonebysimple = (data = {}) => {
 /**
  * @memberof apis
  * @description: 描述方法
+ * @function editoradd
+ * @param {type}  传入参数
+ * @author 许(后端对接人名称)
+ * @see {@link https://t.com/doc/MrD0qNADV}
+ * @return {object} 接口对象
+ */
+
+export const getsomebysimple = (data = {}) => {
+  return request.post({
+    url: 'getsomebysimple',
+    data,
+    gateway
+  });
+};
+
+/**
+ * @memberof apis
+ * @description: 描述方法
  * @function Delete
  * @param {type}  传入参数
  * @author 许(后端对接人名称)
@@ -160,6 +178,25 @@ export const addbyself = (data = {}) => {
 export const getVerfication = (data = {}) => {
   return request.post({
     url: 'getVerfication',
+    data,
+    gateway
+  });
+};
+
+
+/**
+ * @memberof apis
+ * @description: 修改密码
+ * @function forget
+ * @param {type}  传入参数
+ * @author 许(后端对接人名称)
+ * @see {@link https://t.com/doc/MrD0qNADV}
+ * @return {object} 接口对象
+ */
+
+export const forget = (data = {}) => {
+  return request.post({
+    url: 'forget',
     data,
     gateway
   });

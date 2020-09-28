@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-06-08 13:52:17
- * @lastTime: 2020-09-27 15:12:23
+ * @lastTime: 2020-09-28 13:18:32
  * @LastAuthor: xgj
  * @FilePath: /admin/src/api/index.js
  * @message:
@@ -23,6 +23,7 @@ import * as Goods from './modules/Goods';
 import * as ExchangeCard from './modules/ExchangeCard';
 import * as MemberSetting from './modules/MemberSetting';
 import * as Weixin from './modules/Weixin';
+import * as PaymentFlow from './modules/PaymentFlow';
 
 
 export default {
@@ -36,4 +37,5 @@ export default {
   ExchangeCard,
   MemberSetting,
   Weixin,
+  PaymentFlow,
 };

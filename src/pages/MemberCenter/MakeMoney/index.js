@@ -1,16 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Result, Button, Form, Modal } from 'antd';
 import api from '@/api';
+import { connect } from 'umi';
 import QRCode from 'qrcode.react';
-const MakeMoney = () => {
+
+const MakeMoney = (props) => {
+  const { user: { _id: _member } } = props;
   const [visible, setVisible] = useState(false);
   const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
+  const [money, setMoney] = useState('');
 
+
+  const initLoad = async () => {
+    const r = await api.Config.getonebysimple({
+      name: '年费'
+    });
+    if (r && r !== true) {
+      setMoney(r.value);
+    }
+
+  };
+  useEffect(() => {
+    initLoad();
+  }, []);
   const handleClick = async () => {
     setLoading(true);
     try {
-      const r = await api.Weixin.getPayWeb();
+      const r = await api.Weixin.getPayWeb({ _member });
       if (r) {
         setVisible(true);
         setCode(r);
@@ -28,7 +45,7 @@ const MakeMoney = () => {
         icon=""
         // status="success"
         title="点击续费会员"
-        subTitle="按年计算，一年265元"
+        subTitle={`按年计算，一年${(money / 100).toFixed(2)}元`}
         extra={[
           <Button loading={loading} onClick={handleClick} type="primary" key="buy">去充值</Button>,
         ]}
@@ -47,4 +64,4 @@ const MakeMoney = () => {
   );
 };
 
-export default MakeMoney;
+export default connect(({ user }) => ({ user: user.data }))(MakeMoney);

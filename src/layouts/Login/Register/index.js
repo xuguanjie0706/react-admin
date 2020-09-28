@@ -1,11 +1,11 @@
 import { Form, Icon, Input, Button, Checkbox, Col, Row, message } from 'antd';
 import React, { useEffect, useState } from 'react';
-import './index.less';
+import '../index.less';
 // import getData from '../../utils/api';
 import { connect, Link } from 'umi';
 import { phoneValidator } from '@/utils/validator';
 import md5 from 'md5';
-import { debounce } from '@/utils';
+// import { debounce } from '@/utils';
 import { UserOutlined, LockOutlined, SafetyOutlined, PhoneOutlined } from '@ant-design/icons';
 import api from '@/api';
 
@@ -196,7 +196,7 @@ const LoginByThirdView = ({ history, user, dispatch }) => {
           validator: phoneValidator
         }]}>
         <Input
-          prefix={<PhoneOutlined />}
+          prefix={<PhoneOutlined style={{ color: '#ccc' }} />}
           placeholder="请输入号码"
           allowClear
         />
@@ -238,7 +238,7 @@ const LoginByThirdView = ({ history, user, dispatch }) => {
         rules={[{ required: true, message: '请输入验证码' }]}>
         <Search
           allowClear
-          prefix={<SafetyOutlined />}
+          prefix={<SafetyOutlined style={{ color: '#ccc' }} />}
           placeholder="输入验证码" onSearch={() => handleVerification()} enterButton={<Button style={{ width: 102 }} disabled={buttonDisable} type="primary">{buttonTitle}</Button>}
         />
       </Form.Item>
@@ -250,7 +250,7 @@ const LoginByThirdView = ({ history, user, dispatch }) => {
     </ >);
   return (
     <div className="login-room">
-      <div className="login-form" style={type === '登录' ? { width: 300 } : { width: 400 }}>
+      <div className="login-form" style={type === '登录' ? { width: 300 } : { width: 350 }}>
         <div className="login-head">
           {types.map(item => <h3 onClick={() => handleClick(item)} key={item} className={item === type ? 'active' : ''}>{item}</h3>)}
         </div>
