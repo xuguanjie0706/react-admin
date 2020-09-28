@@ -59,7 +59,7 @@ export default [
               path: "configList",
               authority: 'config',
               name: "参数配置",
-              component: "@/pages/SettingManage/ConfigView"
+              component: "@/pages/SettingManage/SettingView"
             },
               // {
               //   path: "pictureList",
