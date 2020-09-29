@@ -53,7 +53,7 @@ const Search = (props) => {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
         >
-          <Select placeholder="请选择">
+          <Select allowClear placeholder="请选择">
             {arr.map(item => <Option key={item.key} value={item.key}>{item.value}</Option>)}
           </Select>
         </Form.Item>
