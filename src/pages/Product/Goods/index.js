@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-09-25 16:33:24
+ * @lastTime: 2020-09-29 10:32:04
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Product/Goods/index.js
  * @message:权益划转
@@ -22,7 +22,7 @@ import config from '@/utils/config';
 const fileName = 'Goods';
 
 const Custom = (props) => {
-  const { defaultSearchData, _id: memberId } = props;
+  const { defaultSearchData, _id: memberId, isUser } = props;
 
   /* ******* 设置属性 *******  */
   const [modelChild, setModelChild] = useState(null); // 新增弹窗
@@ -128,18 +128,19 @@ const Custom = (props) => {
       title: '操作',
       align: 'center',
       key: 'action',
-      render: (text) => <>
+      render: (text) => <>{memberId === text._member && <>
         <Button type="link" onClick={() => handleEdit(text)}>
           编辑
         </Button>
-        <Divider type="vertical" ></Divider>
-        <Popconfirm
+      </>}
+        {/* <Divider type="vertical" ></Divider> */}
+        {/* <Popconfirm
           title="确定要删除吗？"
           onConfirm={() => handleDelete(text)}>
           <Button type="link" >
             删除
         </Button>
-        </Popconfirm>
+        </Popconfirm> */}
 
       </>,
     },
@@ -149,6 +150,7 @@ const Custom = (props) => {
     <>
       <SearchTable
         rowKey="_id"
+        isUser={isUser}
         request={api[fileName].page}
         loading
         columns={columns}
@@ -172,5 +174,6 @@ const Custom = (props) => {
 };
 
 export default connect(({ user }) => ({
-  _id: user._id
+  _id: user._id,
+  isUser: user.data.isUser
 }))(Custom);

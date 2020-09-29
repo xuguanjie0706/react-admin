@@ -7,7 +7,7 @@ import api from '@/api';
 const arr = [{ key: true, value: '已支付' }, { key: false, value: '未支付' }];
 const { Option } = Select;
 const Search = (props) => {
-  const { pkgList = [], form, defaultSearchData } = props;
+  const { form, defaultSearchData } = props;
   const [memberList, setMemberList] = useState([]);
 
 
@@ -21,7 +21,7 @@ const Search = (props) => {
     initLoad();
   }, []);
 
-  form.setFieldsValue(defaultSearchData);
+  // form.setFieldsValue(defaultSearchData);
   return (
     <Row>
       <Col xs={24} sm={12} md={8} lg={6} xl={6} xxl={6}>

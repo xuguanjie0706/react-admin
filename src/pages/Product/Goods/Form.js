@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Input, Select, Col, InputNumber, Upload, message } from 'antd';
 import CustomModalContainer from '@/components/Custom/CustomModalContainer';
-import { UNIT_ENUM } from '@/utils/enum';
 import CustomUpload from '@/components/Custom/CustomApiFormItem/PeopleCardUpload';
 import UploadPic from '@/components/Custom/CustomApiFormItem/UploadPic';
 
@@ -67,7 +66,7 @@ const CustomForm = (props) => {
           name="imgs"
           rules={[{ required: true, message: '请上传图片' }]}
         >
-          <UploadPic />
+          <UploadPic accept="image/*" />
         </Form.Item>
         <Form.Item
           label="价格"

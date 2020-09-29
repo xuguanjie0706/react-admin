@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-09-24 18:53:34
+ * @lastTime: 2020-09-29 10:22:47
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Product/ExchangeCard/index.js
  * @message:权益划转
@@ -10,13 +10,15 @@ import React, { useEffect, useState, useCallback } from 'react';
 import CustomTable from '@/components/Custom/CustomTable';
 import CustomSearchContainer from '@/components/Custom/CustomSearchContainer';
 import CustomSearchBtnContainer from '@/components/Custom/CustomSearchBtnContainer';
-import { Button, Divider, message, Popconfirm } from 'antd';
+import { Button, Divider, message, Popconfirm, Tag } from 'antd';
 import api from '@/api';
 import { connect } from 'umi';
 import Search from './Search';
 import ModalForm from './Form';
 import SendForm from './Send';
 import moment from 'moment';
+import Btn from './Btn';
+import ImportForm from './Import';
 import config from '@/utils/config';
 import { STATUS_USE_ENUM } from '@/utils/enum';
 
@@ -33,6 +35,7 @@ const Custom = (props) => {
   /* ******* 设置属性 *******  */
   const [modelChild, setModelChild] = useState(null); // 新增弹窗
   const [sendChild, setSendChild] = useState(null); // 配送弹窗
+  const [importChild, setImportChild] = useState(null); // 配送弹窗
   const [tableChild, setTableChild] = useState(null); // 列表弹窗
   const [defaultData, setDefaultData] = useState({ id: 0 }); // 新增编辑默认值
 
@@ -44,6 +47,9 @@ const Custom = (props) => {
   };
   const sendRef = (ref) => {
     setSendChild(ref);
+  };
+  const importRef = (ref) => {
+    setImportChild(ref);
   };
 
   const tableRef = (ref) => {
@@ -57,6 +63,7 @@ const Custom = (props) => {
   const handleEdit = async (item) => {
     if (item._id) {
       const r = await api[fileName].getonebysimple({ _id: item._id });
+      r.time = moment(r.overtime);
       setDefaultData(r);
     } else {
       setDefaultData(item);
@@ -70,6 +77,13 @@ const Custom = (props) => {
     setDefaultData(item);
     if (sendChild) {
       sendChild.handleShow();
+    }
+  };
+
+  const handleImport = async (item) => {
+    setDefaultData(item);
+    if (importChild) {
+      importChild.handleShow();
     }
   };
 
@@ -101,15 +115,20 @@ const Custom = (props) => {
   /* 新增按钮 */
   const addBtn = useCallback(
     () => (
-      <Button style={{ marginBottom: 10, width: 100 }} type="primary" onClick={() => handleEdit({ _id: undefined })}>
-        新增
+      <>
+        <Button style={{ marginBottom: 10, width: 100, marginRight: 10 }} type="primary" onClick={() => handleEdit({ _id: undefined })}>
+          新增
       </Button>
+        <Button style={{ marginBottom: 10, width: 100, marginRight: 10 }} type="dashed" onClick={() => handleImport({ _id: undefined })}>
+          导入
+        </Button>
+      </>
     ),
     [modelChild],
   );
   /* 表单列表 */
   const SearchTable = useCallback(
-    CustomSearchContainer(CustomTable, Search, CustomSearchBtnContainer(), addBtn),
+    CustomSearchContainer(CustomTable, Search, Btn, addBtn),
     [addBtn],
   );
   /* 底部按钮 */
@@ -151,7 +170,7 @@ const Custom = (props) => {
       key: '_goods',
       align: 'center',
       width: 120,
-      render: text => text.map(item => item.name)
+      render: text => text.map(item => <Tag key={item.name}>{item.name}</Tag>)
     },
     {
       title: '已兑换商品',
@@ -209,13 +228,12 @@ const Custom = (props) => {
       key: 'action',
       fixed: 'right',
       width: 240,
-      render: (text) => <>
+      render: (text) => <>{memberId === text._member && <>
         {text.status !== '1' && <><Button type="link" onClick={() => handleSend(text)}>
           填单
         </Button>
           <Divider type="vertical" ></Divider></>
         }
-
         <Button type="link" onClick={() => handleEdit(text)}>
           编辑
         </Button>
@@ -227,6 +245,7 @@ const Custom = (props) => {
             删除
         </Button>
         </Popconfirm>
+      </>}
       </>,
     },
   ];
@@ -236,6 +255,7 @@ const Custom = (props) => {
       <SearchTable
         scroll={{ x: 'max-content' }}
         rowKey="_id"
+        STATUS_USE_ENUM={STATUS_USE_ENUM}
         request={api[fileName].page}
         loading
         isReset={true}
@@ -261,6 +281,18 @@ const Custom = (props) => {
         width={800}
         defaultData={defaultData}
         request={api[fileName].editoradd}
+        callback={() => {
+          tableChild && tableChild.initData();
+        }}
+      />
+      <ImportForm
+        formItemLayout={{ labelCol: { span: 6 }, wrapperCol: { span: 16 } }}
+        onRef={importRef}
+        title={'导入'}
+        // width={800}
+        memberId={memberId}
+        defaultData={defaultData}
+        request={api[fileName].importData}
         callback={() => {
           tableChild && tableChild.initData();
         }}

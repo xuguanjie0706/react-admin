@@ -67,7 +67,7 @@ class $request {
     isMock = false,
     gateway
   }) {
-    const headers = { token: localStorage.getItem('hl-token') };
+    const headers = { token: localStorage.getItem('hl-token') || '' };
     try {
       const r = await instance.request({
         url: isMock ? 'mock/' + gateway + '/' + url : gateway + '/' + url,

@@ -130,3 +130,40 @@ export const page = (data = {}) => {
   });
 };
 
+/**
+ * @memberof apis
+ * @description: 导入
+ * @function importData
+ * @param {type}  传入参数
+ * @author 许(后端对接人名称)
+ * @see {@link https://t.com/doc/MrD0qNADV}
+ * @return {object} 接口对象
+ */
+
+export const importData = (data = {}) => {
+  return request.post({
+    url: 'importData',
+    data,
+    gateway
+  });
+};
+
+/**
+ * @memberof apis
+ * @description: 导出
+ * @function deriveData
+ * @param {type}  传入参数
+ * @author 许(后端对接人名称)
+ * @see {@link https://t.com/doc/MrD0qNADV}
+ * @return {object} 接口对象
+ */
+
+export const deriveData = (data = {}) => {
+  return request.post({
+    url: 'deriveData',
+    data,
+    gateway
+  });
+};
+
+
