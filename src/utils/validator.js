@@ -6,11 +6,14 @@
  */
 
 /**
- * @memberof Validator 
+ * @memberof Validator
  * @description 手机号验证
  * @return {Promise}
  */
 export const phoneValidator = (rule, value) => {
+  if (!value) {
+    return Promise.resolve();
+  }
   if (!/^[1][3,4,5,6,7,8,9][0-9]{9}$/.test(value)) {
     return Promise.reject('请输入正确的手机号');
   }
@@ -18,13 +21,13 @@ export const phoneValidator = (rule, value) => {
 };
 
 /**
- * @memberof Validator 
+ * @memberof Validator
  * @description 身份证验证
  * @return {Promise}
  */
 export const peopleCardValidator = (rule, value) => {
   return new Promise((resolve, reject) => {
-    if (value === "") {
+    if (value === '') {
       resolve();
     }
     if (
@@ -39,7 +42,7 @@ export const peopleCardValidator = (rule, value) => {
 };
 
 /**
- * @memberof Validator 
+ * @memberof Validator
  * @description 银行卡验证
  * @return {Promise}
  */
@@ -54,7 +57,7 @@ export const bankCardValidator = (rule, value) => {
 };
 
 /**
- * @memberof Validator 
+ * @memberof Validator
  * @description 姓名验证
  * @return {Promise}
  */
@@ -69,7 +72,7 @@ export const nameValidator = (rule, value) => {
 };
 
 /**
- * @memberof Validator 
+ * @memberof Validator
  * @description 昵称验证
  * @return {Promise}
  */
@@ -84,7 +87,7 @@ export const nicknameValidator = (rule, value) => {
 };
 
 /**
- * @memberof Validator 
+ * @memberof Validator
  * @description 密码验证
  * @return {Promise}
  */
@@ -99,7 +102,7 @@ export const numberPasswordValidator = (rule, value) => {
 };
 
 /**
- * @memberof Validator 
+ * @memberof Validator
  * @description Url验证
  * @return {Promise}
  */

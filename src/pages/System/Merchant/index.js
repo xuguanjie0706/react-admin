@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-09-25 23:40:48
+ * @lastTime: 2020-09-29 10:44:40
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/System/Merchant/index.js
  * @message:权益划转
@@ -176,7 +176,7 @@ const Custom = (props) => {
         title={!defaultData._id ? '新增' : '编辑'}
         defaultData={defaultData}
         request={(values) => {
-          const _data = { ...values, password: values.password && md5(values.password) };
+          const _data = { ...values, password: values.password && md5(values.password), status: true, overtime: moment().add(7, 'day').valueOf() };
           return api.User.editoradd(_data);
         }}
         callback={() => {

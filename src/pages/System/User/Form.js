@@ -43,7 +43,7 @@ const CustomForm = (props) => {
         name="name"
         rules={[{ required: true, message: '请选择账号' }]}
       >
-        <Input allowClear placeholder="请输入账号" />
+        <Input readOnly={defaultData._id} allowClear placeholder="请输入账号" />
       </Form.Item>
       {
         !isShow && <Form.Item

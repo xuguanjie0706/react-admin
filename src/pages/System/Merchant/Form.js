@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Form, Input, Select, Col, InputNumber } from 'antd';
 import CustomModalContainer from '@/components/Custom/CustomModalContainer';
 import api from '@/api';
+import { phoneValidator } from '@/utils/validator';
 
 
 const { Option } = Select;
@@ -41,9 +42,18 @@ const CustomForm = (props) => {
       <Form.Item
         label="账号"
         name="name"
-        rules={[{ required: true, message: '请选择账号' }]}
+        rules={[{ required: true, message: '请输入账号' }]}
       >
-        <Input allowClear placeholder="请输入账号" />
+        <Input readOnly={defaultData._id} allowClear placeholder="请输入账号" />
+      </Form.Item>
+      <Form.Item
+        label="手机号"
+        name="phone"
+        rules={[{ required: true, message: '请输入手机号' }, {
+          validator: phoneValidator
+        }]}
+      >
+        <Input maxLength={11} allowClear placeholder="请输入手机号" />
       </Form.Item>
       {
         !isShow && <Form.Item
