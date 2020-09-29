@@ -47,7 +47,7 @@ const errorHandler = error => {
 
 const instance = axios.create({
   baseURL: config.url,
-  timeout: 5000,
+  timeout: 10000,
 });
 // const defaultHeader = {
 //   token: localStorage.getItem("hl-token")
