@@ -30,11 +30,6 @@ const CustomForm = (props) => {
     setIsFinish(true);
   }, []);
 
-  // useEffect(() => {
-  //   if (defaultData._id) {
-  //     setFieldsValue(defaultData);
-  //   }
-  // }, [defaultData._id]);
 
   return (
     <>{isFinish && <>
@@ -90,7 +85,7 @@ const CustomForm = (props) => {
           {goodsList.map(item => <Option key={item._id} value={item._id}>{item.name}</Option>)}
         </Select>
       </Form.Item>
-      <Form.Item name="overtime" hidden>
+      <Form.Item name="overtime" hidden initialValue={moment().add(1, 'year').valueOf()}>
         <Input />
       </Form.Item>
       <Form.Item name="time" label="过期时间"
@@ -99,6 +94,7 @@ const CustomForm = (props) => {
         getValueFromEvent={(value) => {
           const _data = { overtime: moment(moment(value).format('YYYY-MM-DD') + ' 00:00:00').valueOf() };
           form().setFieldsValue(_data);
+          console.log(_data);
           return value;
         }}
       >
