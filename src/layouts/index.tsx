@@ -152,7 +152,7 @@ const Custom = (props: any) => {
     <>
       <ProLayout
         // logo={logo}
-        title="云隐兑换后台"
+        title="微信提货系统"
         fixSiderbar
         loading={false}
         fixedHeader
