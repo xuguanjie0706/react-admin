@@ -11,7 +11,7 @@ const proSettings = {
   menu: {
     locale: true,
   },
-  title: '金泽康养后台',
+  title: '乐隐微信自助提货系统后台',
   pwa: true,
   iconfontUrl: '',
 };
