@@ -17,7 +17,7 @@ const Home = () => {
   }, []);
   return (
     <Card title="首页">
-      欢迎光临
+      欢迎您使用乐隐微信自助提货系统
       {/* <img src={url} alt="" /> */}
     </Card>
     // <div className="box">

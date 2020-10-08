@@ -3,6 +3,7 @@ import { Card, Result, Button, Form, Modal } from 'antd';
 import api from '@/api';
 import { connect } from 'umi';
 import QRCode from 'qrcode.react';
+import pic from './assets/pic.jpg';
 
 const MakeMoney = (props) => {
   const { user: { _id: _member } } = props;
@@ -50,12 +51,17 @@ const MakeMoney = (props) => {
           <Button loading={loading} onClick={handleClick} type="primary" key="buy">去充值</Button>,
         ]}
       />
-      <Modal title="请扫码续费" visible={visible} onOk={() => setVisible(false)} onCancel={() => setVisible(false)}>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Modal
+        style={{ top: 20 }}
+        // width={300}
+        footer={null}
+        title="请微信扫码续费,付款成功请手动刷新界面" visible={visible} onOk={() => setVisible(false)} onCancel={() => setVisible(false)}>
+        <div style={{ backgroundImage: `url(${pic})`, position: '0 0', backgroundSize: '100% 100%', display: 'flex', justifyContent: 'center', alignItems: 'center', height: 600 }}>
           <QRCode
+            style={{ marginTop: -35 }}
             id='qrid2'
             value={code} // value参数为生成二维码的链接
-            size={110} // 二维码的宽高尺寸
+            size={200} // 二维码的宽高尺寸
             fgColor="#000000" // 二维码的颜色
           ></QRCode>
         </div>

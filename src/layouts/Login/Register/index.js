@@ -102,7 +102,7 @@ const LoginByThirdView = ({ history, user, dispatch }) => {
   const costomForm = type === '登录' ? (<>
     <Form.Item name="name"
       rules={[{ required: true, message: '请输入账号' }, {
-        max: 10, message: '账号最多10位字符',
+        max: 32, message: '账号最多32位字符',
       }, {
         min: 3, message: '账号最少3位字符'
       }]}
@@ -147,7 +147,7 @@ const LoginByThirdView = ({ history, user, dispatch }) => {
   </ >) :
     (<>
       <Form.Item name="name" rules={[{ required: true, message: '请输入账号' }, {
-        max: 10, message: '账号最多10位字符',
+        max: 32, message: '账号最多32位字符',
       }, {
         min: 3, message: '账号最少3位字符'
       }]} >

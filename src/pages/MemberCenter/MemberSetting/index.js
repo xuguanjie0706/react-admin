@@ -4,6 +4,7 @@ import QRCode from 'qrcode.react';
 import { connect } from 'umi';
 import api from '@/api';
 import moment from 'moment';
+import pic from './assets/pic.jpg';
 import CustomUpload from '@/components/Custom/CustomApiFormItem/PeopleCardUpload';
 import config from '@/utils/config';
 
@@ -73,22 +74,30 @@ const MakeMoney = (props) => {
             </Form.Item>
           </Descriptions.Item> */}
           <Descriptions.Item label="软件背景图" span={2}>
-            <Form.Item name="img">
+            <Form.Item name="img" extra="推荐尺寸375*812">
               <CustomUpload styles={{ width: 160, height: 160 }} desc="图片上传" />
             </Form.Item>
           </Descriptions.Item>
-          <Descriptions.Item label="扫码绑定微信" span={2}>
-            <QRCode
-              id='qrid'
-              value={`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx45d398e7c87a97f6&redirect_uri=http%3A%2F%2Fpick.yystart.com%2Fmobile%2F%23%2Fhome&response_type=code&scope=snsapi_base&state=${_id}#wechat_redirect`} // value参数为生成二维码的链接
-              size={110} // 二维码的宽高尺寸
-              fgColor="#000000" // 二维码的颜色
-            />
+          <Descriptions.Item label={<span style={{ whiteSpace: 'pre-wrap' }}>{'请商户首先关注本服务号,\n二维码获取订单通知功能'} </span>} span={2}>
+            <img src={pic} alt="" width={125} />
+          </Descriptions.Item>
+          <Descriptions.Item label="请商户扫码完成个人微信通知绑定功能" span={2}>
+            <div style={{ padding: 8 }}>
+              <QRCode
+                id='qrid'
+                value={`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx45d398e7c87a97f6&redirect_uri=http%3A%2F%2Fpick.yystart.com%2Fmobile%2F%23%2Fhome&response_type=code&scope=snsapi_base&state=${_id}#wechat_redirect`} // value参数为生成二维码的链接
+                size={110} // 二维码的宽高尺寸
+                fgColor="#000000" // 二维码的颜色
+              />
+            </div>
           </Descriptions.Item>
         </Descriptions>
-        <Button htmlType="submit" style={{ marginTop: 10 }} type="primary">提交</Button>
       </Form>
-    </Card>
+      <div>
+        <Button htmlType="submit" style={{ marginTop: 10 }} type="primary">保存配置</Button>
+      </div>
+
+    </Card >
   );
 };
 
