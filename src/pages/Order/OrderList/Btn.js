@@ -13,7 +13,7 @@ const Btn = props => {
 
     const data = form.getFieldsValue();
     if (data.status !== '3') {
-      message.error('只有已发货才能导出');
+      message.error('只有已发货栏才能导出');
       return;
     }
     api.ExchangeCard.deriveAddressData(data).then(r => {
@@ -26,7 +26,7 @@ const Btn = props => {
   const handleSendClick = () => {
     const data = form.getFieldsValue();
     if (data.status !== '2') {
-      message.error('只有已兑换代发货');
+      message.error('只有已兑换栏才能进行发货');
       return;
     }
     if (selectedKey.length) {

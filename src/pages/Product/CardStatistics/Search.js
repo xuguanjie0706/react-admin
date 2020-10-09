@@ -36,6 +36,13 @@ const Search = (props) => {
           <Input allowClear placeholder="请输入账号名称" />
         </Form.Item>
       </Col>
+      <Form.Item
+        name="isLook"
+        hidden
+        initialValue={true}
+      >
+        <Input />
+      </Form.Item>
       {
         +isUser === 1 && <Col xs={24} sm={12} md={8} lg={6} xl={6} xxl={6}>
           <Form.Item

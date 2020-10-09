@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-10-09 12:49:15
+ * @lastTime: 2020-10-09 17:03:18
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Product/CardStatistics/index.js
  * @message:权益划转
@@ -16,7 +16,7 @@ import { connect } from 'umi';
 import Search from './Search';
 import ModalForm from './Form';
 import moment from 'moment';
-import config from '@/utils/config';
+import CustomTabsTable from './TabsTable';
 
 
 const fileName = 'ExchangeCard';
@@ -91,7 +91,7 @@ const Custom = (props) => {
   // );
   /* 表单列表 */
   const SearchTable = useCallback(
-    CustomSearchContainer(CustomTable, Search, CustomSearchBtnContainer()),
+    CustomSearchContainer(CustomTabsTable, Search, CustomSearchBtnContainer()),
     [],
   );
   /* 底部按钮 */
@@ -129,6 +129,7 @@ const Custom = (props) => {
       title: '操作',
       align: 'center',
       key: 'action',
+      type: ['1'],
       render: (text) => <>{memberId === text._member && <>
         <Button type="link" onClick={() => handleEdit(text)}>
           编辑
@@ -138,10 +139,33 @@ const Custom = (props) => {
           title="确定要该操作吗？"
           onConfirm={() => handleDelete({
             name: text._id,
-            isLook: !text.isLook
+            isLook: false
           })}>
           <Button type="link" >
             不关注
+          </Button>
+        </Popconfirm>
+      </>}
+      </>,
+    },
+    {
+      title: '操作',
+      align: 'center',
+      key: 'action',
+      type: ['0'],
+      render: (text) => <>{memberId === text._member && <>
+        <Button type="link" onClick={() => handleEdit(text)}>
+          编辑
+        </Button>
+        <Divider type="vertical" ></Divider>
+        <Popconfirm
+          title="确定要该操作吗？"
+          onConfirm={() => handleDelete({
+            name: text._id,
+            isLook: true
+          })}>
+          <Button type="link" >
+            关注
           </Button>
         </Popconfirm>
       </>}
@@ -152,6 +176,10 @@ const Custom = (props) => {
   return (
     <>
       <SearchTable
+        tabList={[
+          { title: '关注类', key: 1 },
+          { title: '不关注类', key: 0 },
+        ]}
         rowKey="_id"
         isUser={isUser}
         request={api[fileName].statistics}
