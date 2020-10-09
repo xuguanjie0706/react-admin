@@ -6,7 +6,7 @@ import config from '@/utils/config';
 
 const fileName = 'ExchangeCard';
 const Btn = props => {
-  console.log(props);
+  // console.log(props);
 
   const { form, selectedKey = [], tableChild } = props;
   const handleClick = () => {
