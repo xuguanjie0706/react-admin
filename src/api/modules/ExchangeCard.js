@@ -165,5 +165,74 @@ export const deriveData = (data = {}) => {
     gateway
   });
 };
+/**
+ * @memberof apis
+ * @description: 导出地址信息
+ * @function deriveAddressData
+ * @param {type}  传入参数
+ * @author 许(后端对接人名称)
+ * @see {@link https://t.com/doc/MrD0qNADV}
+ * @return {object} 接口对象
+ */
+
+export const deriveAddressData = (data = {}) => {
+  return request.post({
+    url: 'deriveAddressData',
+    data,
+    gateway
+  });
+};
+
+/**
+ * @memberof apis
+ * @description: 卡片统计
+ * @function statistics
+ * @param {type}  传入参数
+ * @author 许(后端对接人名称)
+ * @see {@link https://t.com/doc/MrD0qNADV}
+ * @return {object} 接口对象
+ */
+
+export const statistics = (data = {}) => {
+  return request.post({
+    url: 'statistics',
+    data,
+    gateway
+  });
+};
+/**
+ * @memberof apis
+ * @description: 卡片统计批量修改
+ * @function statisticsUpdate
+ * @param {type}  传入参数
+ * @author 许(后端对接人名称)
+ * @see {@link https://t.com/doc/MrD0qNADV}
+ * @return {object} 接口对象
+ */
+
+export const statisticsUpdate = (data = {}) => {
+  return request.post({
+    url: 'statisticsUpdate',
+    data,
+    gateway
+  });
+};
+/**
+ * @memberof apis
+ * @description: 批量修改发货
+ * @function orderSend
+ * @param {type}  传入参数
+ * @author 许(后端对接人名称)
+ * @see {@link https://t.com/doc/MrD0qNADV}
+ * @return {object} 接口对象
+ */
+
+export const orderSend = (data = {}) => {
+  return request.post({
+    url: 'orderSend',
+    data,
+    gateway
+  });
+};
 
 

@@ -19,7 +19,7 @@ class CustomTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 10,
+      count: 20,
       page: 1,
       loading: true,
       list: [],
@@ -46,7 +46,7 @@ class CustomTable extends Component {
           page: 1,
         });
       }
-      const { defaultSearchData, request = () => {}, form } = this.props;
+      const { defaultSearchData, request = () => { }, form } = this.props;
       let formData = {};
       if (form) {
         const { getFieldsValue } = form;

@@ -85,7 +85,7 @@ const CustomForm = (props) => {
           {goodsList.map(item => <Option key={item._id} value={item._id}>{item.name}</Option>)}
         </Select>
       </Form.Item>
-      <Form.Item name="overtime" hidden initialValue={moment().add(1, 'year').valueOf()}>
+      <Form.Item name="overtime" hidden initialValue={moment(moment().add(1, 'year').format('YYYY-MM-DD') + ' 00:00:00').valueOf()}>
         <Input />
       </Form.Item>
       <Form.Item name="time" label="过期时间"
@@ -94,7 +94,7 @@ const CustomForm = (props) => {
         getValueFromEvent={(value) => {
           const _data = { overtime: moment(moment(value).format('YYYY-MM-DD') + ' 00:00:00').valueOf() };
           form().setFieldsValue(_data);
-          console.log(_data);
+          // console.log(_data);
           return value;
         }}
       >

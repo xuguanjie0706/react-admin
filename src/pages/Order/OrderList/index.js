@@ -1,9 +1,9 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-10-09 10:32:39
+ * @lastTime: 2020-10-09 14:40:43
  * @LastAuthor: xgj
- * @FilePath: /admin/src/pages/Product/Goods/index.js
+ * @FilePath: /admin/src/pages/Order/OrderList/index.js
  * @message:权益划转
  */
 import React, { useEffect, useState, useCallback } from 'react';
@@ -14,21 +14,25 @@ import { Button, Divider, message, Popconfirm } from 'antd';
 import api from '@/api';
 import { connect } from 'umi';
 import Search from './Search';
-import ModalForm from './Form';
-import AddForm from './AddForm';
+import SendForm from './Send';
+import CustomTabsTable from './TabsTable';
+import Btn from './Btn';
 import moment from 'moment';
-import config from '@/utils/config';
 
 
-const fileName = 'Goods';
+const fileName = 'ExchangeCard';
+const AddressView = ({ mobile, people, mainArea, area }) => {
+  return <span style={{ textAlign: 'left', whiteSpace: 'pre-wrap' }}>{`收货人:${people}\n电话:${mobile}\n地址:${area.join('')}${mainArea}`}</span>;
+};
 
 const Custom = (props) => {
-  const { defaultSearchData, _id: memberId, isUser } = props;
+  const { defaultSearchData, _id: memberId } = props;
 
   /* ******* 设置属性 *******  */
   const [modelChild, setModelChild] = useState(null); // 新增弹窗
-  const [addChild, setAddChild] = useState(null); // 新增弹窗
   const [tableChild, setTableChild] = useState(null); // 列表弹窗
+  const [sendChild, setSendChild] = useState(null); // 配送弹窗
+  const [selectedKey, setSelectedKey] = useState([]); // 选择列表
   const [defaultData, setDefaultData] = useState({ id: 0 }); // 新增编辑默认值
 
   /* ******* 设置属性 *******  */
@@ -38,8 +42,8 @@ const Custom = (props) => {
     setModelChild(ref);
   };
 
-  const addRef = (ref) => {
-    setAddChild(ref);
+  const sendRef = (ref) => {
+    setSendChild(ref);
   };
 
   const tableRef = (ref) => {
@@ -62,13 +66,12 @@ const Custom = (props) => {
     }
   };
 
-  const handleAdd = async (item) => {
-    setDefaultData({ _id: item._id });
-    if (addChild) {
-      addChild.handleShow();
+  const handleSend = async (item) => {
+    setDefaultData(item);
+    if (sendChild) {
+      sendChild.handleShow();
     }
   };
-
 
   const handleDelete = async (item) => {
     try {
@@ -82,6 +85,16 @@ const Custom = (props) => {
     }
   };
 
+  const rowSelection = {
+    selections: true,
+    onChange: (selectedRowKeys, selectedRows) => {
+      console.log(selectedRowKeys);
+      setSelectedKey(selectedRowKeys);
+      // setSelectedRowsData(selectedRows);
+    },
+    selectedRowKeys: selectedKey,
+  };
+
   /* ******* 设置方法 ******* */
   /* 初始化 */
   const initLoad = async () => {
@@ -90,7 +103,6 @@ const Custom = (props) => {
   /* ******* 监听 ******* */
   useEffect(() => {
     initLoad();
-    console.log(props);
   }, []);
   /* ******* 监听 ******* */
 
@@ -105,7 +117,7 @@ const Custom = (props) => {
   );
   /* 表单列表 */
   const SearchTable = useCallback(
-    CustomSearchContainer(CustomTable, Search, CustomSearchBtnContainer(), addBtn),
+    CustomSearchContainer(CustomTabsTable, Search, Btn, addBtn),
     [addBtn],
   );
   /* 底部按钮 */
@@ -116,48 +128,57 @@ const Custom = (props) => {
       dataIndex: 'name',
       key: 'name',
       align: 'center',
+      fixed: 'left'
+    },
+    {
+      title: '卡号',
+      dataIndex: 'card',
+      key: 'card',
+      align: 'center',
+    },
+    {
+      title: '已兑换商品',
+      dataIndex: '_usegoods',
+      key: '_usegoods',
+      align: 'center',
+      render: text => text ? text.name : '-',
+
+    },
+    {
+      title: '收货信息',
+      dataIndex: 'address',
+      key: 'address',
+      align: 'center',
       width: 100,
+      render: text => text ? AddressView(text) : '-'
     },
     {
-      title: '描述',
-      dataIndex: 'value',
-      key: 'value',
+      title: '单号',
+      dataIndex: 'sendInfo',
+      key: 'sendInfo',
       align: 'center',
+      type: ['4'],
+      width: 100,
+      render: text => text ? text.map(item => <div key={item.key}>{`${item.sendName}单号:${item.sendNumber},备注:${item.remarks || '-'}`}</div>) : '-'
     },
     {
-      title: '图片',
-      dataIndex: 'img',
-      key: 'img',
+      title: '兑换时间',
+      dataIndex: 'exchangeTime',
+      key: 'exchangeTime',
       align: 'center',
-      render: text => <img width="100" height="100" src={config.url + text} alt="" />
-    },
-    {
-      title: '库存',
-      dataIndex: 'num',
-      key: 'num',
-      align: 'center',
-    },
-    {
-      title: '新增时间',
-      dataIndex: 'createdAt',
-      key: 'createdAt',
-      align: 'center',
-      render: text => text && moment(text).format('YYYY-MM-DD HH:mm')
+      render: text => text ? moment(text).format('YYYY-MM-DD HH:mm') : '-'
     },
     {
       title: '操作',
       align: 'center',
       key: 'action',
-      render: (text) => <>{memberId === text._member && <>
-        <Button type="link" onClick={() => handleEdit(text)}>
-          编辑
-        </Button>
-        <Divider type="vertical" ></Divider>
-        <Button type="link" onClick={() => handleAdd(text)}>
-          补货
-        </Button>
-      </>}
-
+      type: ['3', '4'],
+      render: (text) => <>
+        {text.status !== '2' && <><Button type="link" onClick={() => handleSend(text)}>
+          填单
+        </Button></>
+        }
+        {/* <Divider type="vertical" ></Divider> */}
         {/* <Popconfirm
           title="确定要删除吗？"
           onConfirm={() => handleDelete(text)}>
@@ -168,21 +189,42 @@ const Custom = (props) => {
 
       </>,
     },
+
   ];
 
   return (
     <>
       <SearchTable
+        tabList={[
+          { title: '已兑换', key: 2 },
+          { title: '已发货', key: 3 },
+          { title: '已完成', key: 4 },
+        ]}
+        fileName={fileName}
         rowKey="_id"
-        isUser={isUser}
         request={api[fileName].page}
         loading
         columns={columns}
         onTableRef={tableRef}
         isReset={false}
         defaultSearchData={defaultSearchData}
+        tableChild={tableChild}
+        rowSelection={rowSelection}
+        selectedKey={selectedKey}
+        setSelectedKey={setSelectedKey}
       />
-      <ModalForm
+      <SendForm
+        formItemLayout={{ labelCol: { span: 6 }, wrapperCol: { span: 16 } }}
+        onRef={sendRef}
+        title={'编辑'}
+        width={800}
+        defaultData={defaultData}
+        request={api[fileName].editoradd}
+        callback={() => {
+          tableChild && tableChild.initData();
+        }}
+      />
+      {/* <ModalForm
         formItemLayout={{ labelCol: { span: 6 }, wrapperCol: { span: 16 } }}
         onRef={modelRef}
         title={!defaultData._id ? '新增' : '编辑'}
@@ -192,23 +234,11 @@ const Custom = (props) => {
         callback={() => {
           tableChild && tableChild.initData();
         }}
-      />
-      <AddForm
-        formItemLayout={{ labelCol: { span: 6 }, wrapperCol: { span: 16 } }}
-        onRef={addRef}
-        title={'添加数量'}
-        defaultData={defaultData}
-        memberId={memberId}
-        request={api[fileName].addNum}
-        callback={() => {
-          tableChild && tableChild.initData();
-        }}
-      />
+      /> */}
     </>
   );
 };
 
 export default connect(({ user }) => ({
-  _id: user._id,
-  isUser: user.data.isUser
+  _id: user._id
 }))(Custom);

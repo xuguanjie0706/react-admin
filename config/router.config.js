@@ -76,13 +76,19 @@ export default [
             routes: [{
               path: "goodsList",
               authority: 'Goods',
-              name: "自营商品",
+              name: "商品列表",
               component: "@/pages/Product/Goods"
+            },
+            {
+              path: "CardStatistics",
+              authority: 'CardStatistics',
+              name: "卡片统计",
+              component: "@/pages/Product/CardStatistics"
             },
             {
               path: "ExchangeCard",
               authority: 'ExchangeCard',
-              name: "兑换卡商品",
+              name: "卡片管理",
               component: "@/pages/Product/ExchangeCard"
             },
             ]
@@ -92,6 +98,11 @@ export default [
             name: "订单中心",
             authority: 'order',
             routes: [{
+              path: "OrderList",
+              authority: 'OrderList',
+              name: "订单列表",
+              component: "@/pages/Order/OrderList"
+            }, {
               path: "memberPay",
               authority: 'memberPay',
               name: "会员续费",
