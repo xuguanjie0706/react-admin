@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-09-29 10:22:47
+ * @lastTime: 2020-10-09 16:10:25
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Product/ExchangeCard/index.js
  * @message:权益划转
@@ -156,13 +156,13 @@ const Custom = (props) => {
       align: 'center',
       width: 150,
     },
-    {
-      title: '描述',
-      dataIndex: 'value',
-      key: 'value',
-      align: 'center',
-      width: 120,
-    },
+    // {
+    //   title: '描述',
+    //   dataIndex: 'value',
+    //   key: 'value',
+    //   align: 'center',
+    //   width: 120,
+    // },
 
     {
       title: '可兑换商品',
@@ -180,22 +180,22 @@ const Custom = (props) => {
       width: 120,
       render: text => text ? text.name : '-'
     },
-    {
-      title: '收货信息',
-      dataIndex: 'address',
-      key: 'address',
-      align: 'center',
-      width: 250,
-      render: text => text ? AddressView(text) : '-'
-    },
-    {
-      title: '单号',
-      dataIndex: 'sendInfo',
-      key: 'sendInfo',
-      align: 'center',
-      width: 250,
-      render: text => text ? text.map(item => <div key={item.key}>{`${item.sendName}单号:${item.sendNumber},备注:${item.remarks}`}</div>) : '-'
-    },
+    // {
+    //   title: '收货信息',
+    //   dataIndex: 'address',
+    //   key: 'address',
+    //   align: 'center',
+    //   width: 250,
+    //   render: text => text ? AddressView(text) : '-'
+    // },
+    // {
+    //   title: '单号',
+    //   dataIndex: 'sendInfo',
+    //   key: 'sendInfo',
+    //   align: 'center',
+    //   width: 250,
+    //   render: text => text ? text.map(item => <div key={item.key}>{`${item.sendName}单号:${item.sendNumber},备注:${item.remarks}`}</div>) : '-'
+    // },
 
     {
       title: '过期时间',

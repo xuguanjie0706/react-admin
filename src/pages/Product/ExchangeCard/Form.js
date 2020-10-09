@@ -62,13 +62,13 @@ const CustomForm = (props) => {
           </Form.Item>
         </>
       }
-      <Form.Item
+      {/* <Form.Item
         label="描述"
         name="value"
       // rules={[{ required: true, message: '请输入描述' }]}
       >
         <Input allowClear placeholder="请输入描述" />
-      </Form.Item>
+      </Form.Item> */}
       {!defaultData._id && <Form.Item
         label="编号"
         name="code"

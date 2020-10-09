@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-09-28 13:32:57
+ * @lastTime: 2020-10-09 16:26:17
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Order/MemberPay/index.js
  * @message:权益划转
@@ -21,7 +21,7 @@ import moment from 'moment';
 const fileName = 'PaymentFlow';
 
 const Custom = (props) => {
-  const { defaultSearchData, _id: memberId } = props;
+  const { defaultSearchData, _id: memberId, isUser } = props;
 
   /* ******* 设置属性 *******  */
   const [modelChild, setModelChild] = useState(null); // 新增弹窗
@@ -115,14 +115,14 @@ const Custom = (props) => {
       dataIndex: '_member',
       key: '_member',
       align: 'center',
-      render: text => text.name
+      render: text => text ? text.name : '无'
     },
     {
       title: '用户号码',
       dataIndex: '_member',
       key: '_member',
       align: 'center',
-      render: text => text.phone || '无'
+      render: text => text ? text.phone : '无'
     },
     {
       title: '价格',
@@ -176,6 +176,7 @@ const Custom = (props) => {
         onTableRef={tableRef}
         isReset={false}
         defaultSearchData={defaultSearchData}
+        isUser={isUser}
       />
       {/* <ModalForm
         formItemLayout={{ labelCol: { span: 6 }, wrapperCol: { span: 16 } }}
@@ -193,5 +194,6 @@ const Custom = (props) => {
 };
 
 export default connect(({ user }) => ({
-  _id: user._id
+  _id: user._id,
+  isUser: user.data.isUser
 }))(Custom);

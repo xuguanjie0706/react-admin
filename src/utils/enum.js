@@ -93,7 +93,8 @@ export const UNIT_ENUM = {
 export const STATUS_USE_ENUM = {
   1: '正常',
   2: '已兑换',
-  3: '已完成'
+  3: '待发货',
+  4: '已完成'
 };
 
 /**

@@ -9,7 +9,7 @@ import CustomUpload from '@/components/Custom/CustomApiFormItem/PeopleCardUpload
 import config from '@/utils/config';
 
 const MakeMoney = (props) => {
-  console.log(props);
+  // console.log(props);
 
   const { user: { _id, phone, overtime } } = props;
   // const [data, setData] = useState({});
@@ -58,12 +58,12 @@ const MakeMoney = (props) => {
               <Input placeholder="请输入客服联系方式" />
             </Form.Item>
           </Descriptions.Item>
-          <Descriptions.Item label="会员联系方式" >
+          {/* <Descriptions.Item label="会员联系方式" >
             {phone}
           </Descriptions.Item>
           <Descriptions.Item label="会员到期时间" >
             {moment(overtime).format('YYYY-MM-DD HH:mm:ss')}
-          </Descriptions.Item>
+          </Descriptions.Item> */}
           <Descriptions.Item label="微信端地址" span={4} >
             {config.webUrl + _id}
           </Descriptions.Item>

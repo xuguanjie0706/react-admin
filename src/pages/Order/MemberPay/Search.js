@@ -5,9 +5,11 @@ import { Input, Form, Row, Col, Select } from 'antd';
 // import moment from 'moment';
 import api from '@/api';
 const arr = [{ key: true, value: '已支付' }, { key: false, value: '未支付' }];
+
 const { Option } = Select;
 const Search = (props) => {
-  const { form, defaultSearchData } = props;
+  // console.log(props);
+  const { form, defaultSearchData, isUser } = props;
   const [memberList, setMemberList] = useState([]);
 
 
@@ -18,7 +20,10 @@ const Search = (props) => {
     setMemberList(r);
   };
   useEffect(() => {
-    initLoad();
+    if (isUser === '1') {
+      initLoad();
+    }
+
   }, []);
 
   // form.setFieldsValue(defaultSearchData);
@@ -34,7 +39,7 @@ const Search = (props) => {
           <Input allowClear placeholder="请输入订单号" />
         </Form.Item>
       </Col>
-      <Col xs={24} sm={12} md={8} lg={6} xl={6} xxl={6}>
+      {isUser === '1' && <Col xs={24} sm={12} md={8} lg={6} xl={6} xxl={6}>
         <Form.Item
           name="_member"
           label="用户"
@@ -45,7 +50,8 @@ const Search = (props) => {
             {memberList.map(item => <Option key={item._id} value={item._id}>{item.name}</Option>)}
           </Select>
         </Form.Item>
-      </Col>
+      </Col>}
+
       <Col xs={24} sm={12} md={8} lg={6} xl={6} xxl={6}>
         <Form.Item
           name="status"
