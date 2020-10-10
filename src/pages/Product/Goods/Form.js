@@ -69,6 +69,13 @@ const CustomForm = (props) => {
           <UploadPic accept="image/*" />
         </Form.Item>
         <Form.Item
+          label="库存"
+          name="num"
+          rules={[{ required: true, message: '请输入数量' }]}
+        >
+          <InputNumber min={0} style={{ width: 200 }} allowClear placeholder="请输入数量" />
+        </Form.Item>
+        <Form.Item
           label="价格"
           name="price"
           rules={[{ required: true, message: '请输入价格' }]}

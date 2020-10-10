@@ -33,11 +33,11 @@ const CustomForm = (props) => {
         <Input />
       </Form.Item>
         <Form.Item
-          label="数量"
+          label="补充数量"
           name="num"
           rules={[{ required: true, message: '请输入数量' }]}
         >
-          <InputNumber min={1} style={{ width: 200 }} allowClear placeholder="请输入价格" />
+          <InputNumber min={1} style={{ width: 200 }} allowClear placeholder="请输入数量" />
         </Form.Item></>
     }
     </>
