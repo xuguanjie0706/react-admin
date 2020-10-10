@@ -53,10 +53,10 @@ export default (file, qlt, error) => {
         for (let i = 0; i < bytes.length; i++) {
           ia[i] = bytes.charCodeAt(i);
         }
-        file = new Blob([ab], { type: 'image/jpeg' });
-        file.name = name;
-
-        res(file);
+        // file = new Blob([ab], { type: 'image/jpeg' });
+        // file.name = name;
+        const resultFile = blobToFile(file, name);
+        res(resultFile);
       };
       img.onerror = e => {
         rej();
@@ -66,4 +66,8 @@ export default (file, qlt, error) => {
       rej();
     };
   });
+};
+
+const blobToFile = function (newBlob, fileName) {
+  return new File([newBlob], fileName, { type: 'image/jpg', lastModified: Date.now() });
 };
