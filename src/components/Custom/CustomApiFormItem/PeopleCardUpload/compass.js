@@ -53,8 +53,7 @@ export default (file, qlt, error) => {
         for (let i = 0; i < bytes.length; i++) {
           ia[i] = bytes.charCodeAt(i);
         }
-        // file = new Blob([ab], { type: 'image/jpeg' });
-        // file.name = name;
+        file = new Blob([ab], { type: 'image/jpg' });
         const resultFile = blobToFile(file, name);
         res(resultFile);
       };
