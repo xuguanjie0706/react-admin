@@ -45,7 +45,7 @@ const PeopleCardUpload = props => {
 
   const onUploadProgress = progressEvent => {
     const completeActive =
-      (progressEvent.loaded / progressEvent.total) * 100 || 0;
+      (progressEvent.loaded / progressEvent.total).toFixed(2) * 100 || 0;
     setComplete(completeActive);
     if (completeActive === 100) {
       setTimeout(() => {

@@ -1,7 +1,7 @@
 export default (file, qlt, error) => {
   // 图片小于1M不压缩
   return new Promise((res, rej) => {
-    if (file.size < 2048 * 1024) {
+    if (file.size < 1024 * 1024) {
       return res(file);
     }
 
