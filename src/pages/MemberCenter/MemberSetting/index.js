@@ -47,7 +47,7 @@ const MakeMoney = (props) => {
         <Form.Item name="_member" hidden initialValue={_id} >
           <Input />
         </Form.Item>
-        <Descriptions bordered column={2}>
+        <Descriptions bordered column={2} style={{ width: '100%' }}>
           <Descriptions.Item label="软件标题" >
             <Form.Item name="name" >
               <Input placeholder="请输入软件标题" />
@@ -92,10 +92,11 @@ const MakeMoney = (props) => {
             </div>
           </Descriptions.Item>
         </Descriptions>
+        <div>
+          <Button htmlType="submit" style={{ marginTop: 10 }} type="primary">保存配置</Button>
+        </div>
       </Form>
-      <div>
-        <Button htmlType="submit" style={{ marginTop: 10 }} type="primary">保存配置</Button>
-      </div>
+
 
     </Card >
   );
