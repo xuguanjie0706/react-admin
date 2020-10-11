@@ -41,7 +41,7 @@ const CustomForm = (props) => {
           name="name"
           rules={[{ required: true, message: '请输入名称' }]}
         >
-          <Input readOnly placeholder="请输入名称" />
+          <Input placeholder="请输入名称" />
         </Form.Item>
         <Form.Item
           label="商品"

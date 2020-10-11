@@ -36,19 +36,17 @@ const Btn = props => {
         }
       });
     } else {
-      message.error('请选择卡号');
+      message.error('请勾选已兑换需发货的订单');
     }
   };
   return (
     <>
-
       <Button style={{ width: 80, marginRight: 10 }} onClick={handleClick}>
         导出
-        </Button>
-      <Button type="dashed" style={{ width: 100 }} onClick={handleSendClick}>
-        批量代发货
       </Button>
-
+      <Button type="dashed" style={{ width: 100 }} onClick={handleSendClick}>
+        批量发货
+      </Button>
     </>
   );
 };

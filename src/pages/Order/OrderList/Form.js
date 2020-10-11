@@ -47,13 +47,13 @@ const CustomForm = (props) => {
         >
           <Input allowClear placeholder="请输入名称" />
         </Form.Item>
-        <Form.Item
+        {/* <Form.Item
           label="描述"
           name="value"
           rules={[{ required: true, message: '请输入描述' }]}
         >
           <Input allowClear placeholder="请输入描述" />
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item
           extra="推荐尺寸为160*160"
           label="首图"
