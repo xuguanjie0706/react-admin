@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-10-09 16:10:25
+ * @lastTime: 2020-10-11 11:16:55
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Product/ExchangeCard/index.js
  * @message:权益划转
@@ -154,7 +154,7 @@ const Custom = (props) => {
       dataIndex: 'password',
       key: 'password',
       align: 'center',
-      width: 150,
+      width: 100,
     },
     // {
     //   title: '描述',
@@ -227,13 +227,13 @@ const Custom = (props) => {
       align: 'center',
       key: 'action',
       fixed: 'right',
-      width: 240,
+      width: 200,
       render: (text) => <>{memberId === text._member && <>
-        {text.status !== '1' && <><Button type="link" onClick={() => handleSend(text)}>
+        {/* {text.status !== '1' && <><Button type="link" onClick={() => handleSend(text)}>
           填单
         </Button>
           <Divider type="vertical" ></Divider></>
-        }
+        } */}
         <Button type="link" onClick={() => handleEdit(text)}>
           编辑
         </Button>
