@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-10-09 17:03:18
+ * @lastTime: 2020-10-11 10:03:33
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Product/CardStatistics/index.js
  * @message:权益划转
@@ -49,6 +49,7 @@ const Custom = (props) => {
     //   const r = await api[fileName].getonebysimple({ _id: item._id });
     //   setDefaultData(r);
     // } else {
+    console.log(item, modelChild);
     setDefaultData({ name: item._id });
     // }
     if (modelChild) {
@@ -81,18 +82,19 @@ const Custom = (props) => {
   /* ******* 监听 ******* */
 
   /* 新增按钮 */
-  // const addBtn = useCallback(
-  //   () => (
-  //     <Button style={{ marginBottom: 10, width: 100 }} type="primary" onClick={() => handleEdit({ _id: undefined })}>
-  //       新增
-  //     </Button>
-  //   ),
-  //   [modelChild],
-  // );
+  const addBtn = useCallback(
+    () => (
+      <></>
+      // <Button style={{ marginBottom: 10, width: 100 }} type="primary" onClick={() => handleEdit({ _id: undefined })}>
+      //   新增
+      // </Button>
+    ),
+    [modelChild],
+  );
   /* 表单列表 */
   const SearchTable = useCallback(
-    CustomSearchContainer(CustomTabsTable, Search, CustomSearchBtnContainer()),
-    [],
+    CustomSearchContainer(CustomTabsTable, Search, CustomSearchBtnContainer(), addBtn),
+    [addBtn],
   );
   /* 底部按钮 */
   /* 自定义字段 */
