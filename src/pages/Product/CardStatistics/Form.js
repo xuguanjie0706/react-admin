@@ -23,6 +23,7 @@ const CustomForm = (props) => {
 
   useEffect(() => {
     initLoad();
+    defaultData.newName = defaultData.name;
     setFieldsValue(defaultData);
     setIsReady(true);
   }, []);
@@ -36,9 +37,12 @@ const CustomForm = (props) => {
         <Form.Item name="_member" hidden initialValue={memberId}>
           <Input />
         </Form.Item>
+        <Form.Item name="name" hidden initialValue={name}>
+          <Input />
+        </Form.Item>
         <Form.Item
           label="名称"
-          name="name"
+          name="newName"
           rules={[{ required: true, message: '请输入名称' }]}
         >
           <Input placeholder="请输入名称" />
