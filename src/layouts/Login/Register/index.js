@@ -1,4 +1,4 @@
-import { Form, Icon, Input, Button, Checkbox, Col, Row, message } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Col, Row, message, Modal } from 'antd';
 import React, { useEffect, useState } from 'react';
 import '../index.less';
 // import getData from '../../utils/api';
@@ -8,6 +8,7 @@ import md5 from 'md5';
 // import { debounce } from '@/utils';
 import { UserOutlined, LockOutlined, SafetyOutlined, PhoneOutlined } from '@ant-design/icons';
 import api from '@/api';
+import moment from 'moment';
 
 const { Search } = Input;
 
@@ -45,6 +46,17 @@ const LoginByThirdView = ({ history, user, dispatch }) => {
         type: 'user/login',
         payload: _data,
       });
+      if (
+        moment(r.overtime).valueOf() <
+        moment()
+          .add(7, 'day')
+          .valueOf()
+      ) {
+        Modal.info({
+          title: '温馨提醒',
+          content: '当前会员有效提临近或已过期，请去充值，以免给您造成损失',
+        });
+      }
 
       if (r) {
         localStorage.setItem('isLogin', true);

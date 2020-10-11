@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import ProLayout, { getMenuData } from '@ant-design/pro-layout';
 import { Link, connect, Router } from 'umi';
 import Icon, { HomeOutlined, createFromIconfontCN } from '@ant-design/icons';
-import { ConfigProvider } from 'antd';
+import { Modal } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import logo from '@/assets/icon_logo.png';
 import RightContent from './RightContent';
+import moment from 'moment';
 import api from '@/api';
 
 interface location {
@@ -122,6 +123,20 @@ const Custom = (props: any) => {
     setShowRoute(copyRoute);
     // console.log(user.status);
   }, [user]);
+
+  useEffect(() => {
+    // if (
+    //   moment(user.data.overtime).valueOf() <
+    //   moment()
+    //     .add(7, 'day')
+    //     .valueOf()
+    // ) {
+    //   Modal.info({
+    //     title: '温馨提醒',
+    //     content: '当前会员有效提临近或已过期，请去充值，以免给您造成损失',
+    //   });
+    // }
+  }, []);
 
   useEffect(() => {
     setCurrentSelectedMenu(pathname);

@@ -2,9 +2,10 @@ import React from 'react';
 import { PageLoading } from '@ant-design/pro-layout';
 import { Redirect, connect } from 'umi';
 // import { stringify } from 'querystring';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, Modal } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import 'moment/locale/zh-cn';
+import moment from 'moment';
 class SecurityLayout extends React.PureComponent {
   state = {
     isReady: false,
@@ -12,13 +13,27 @@ class SecurityLayout extends React.PureComponent {
 
   async componentDidMount() {
     const { location, dispatch, isLogin } = this.props;
+    console.log(location);
     if (
       !isLogin &&
-      (location.pathname !== 'login' || location.pathname !== 'forget')
+      (location.pathname !== '/login' && location.pathname !== '/forget')
     ) {
-      await dispatch({
+      const r = await dispatch({
         type: 'user/check',
       });
+      // console.log(r);
+      // console.log(moment(r.overtime).format('YYYY-MM-DD'));
+      if (
+        moment(r.overtime).valueOf() <
+        moment()
+          .add(7, 'day')
+          .valueOf()
+      ) {
+        Modal.info({
+          title: '温馨提醒',
+          content: '当前会员有效提临近或已过期，请去充值，以免给您造成损失',
+        });
+      }
     }
     this.setState({
       isReady: true,

@@ -38,7 +38,7 @@ const Model = {
           key: 'roles',
         });
         localStorage.setItem('hl-token', response.token);
-        return RoleArr;
+        return response;
       } else {
         return false;
       }
@@ -80,7 +80,7 @@ const Model = {
           key: 'roles',
         });
         // localStorage.setItem('hl-token', response.token);
-        return true;
+        return response;
       } else {
         return false;
       }
