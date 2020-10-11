@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-10-11 14:04:26
+ * @lastTime: 2020-10-12 01:08:28
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Product/ExchangeCard/index.js
  * @message:权益划转
@@ -21,7 +21,7 @@ import Btn from './Btn';
 import ImportForm from './Import';
 import config from '@/utils/config';
 import { STATUS_USE_ENUM } from '@/utils/enum';
-
+import CustomTabsTable from '../ExchangeCard/TabsTable';
 
 const fileName = 'ExchangeCard';
 
@@ -89,7 +89,9 @@ const Custom = (props) => {
 
   const handleDelete = async (item) => {
     try {
+      setDefaultData(item);
       const r = await api[fileName].remove({ _id: item._id });
+
       if (r) {
         tableChild && tableChild.initData();
         message.success('删除成功');
@@ -128,7 +130,7 @@ const Custom = (props) => {
   );
   /* 表单列表 */
   const SearchTable = useCallback(
-    CustomSearchContainer(CustomTable, Search, Btn, addBtn),
+    CustomSearchContainer(CustomTabsTable, Search, Btn, addBtn),
     [addBtn],
   );
   /* 底部按钮 */
@@ -241,7 +243,7 @@ const Custom = (props) => {
         <Popconfirm
           title="确定要删除吗？"
           onConfirm={() => handleDelete(text)}>
-          <Button type="link" >
+          <Button type="link" onClick={() => handleDelete(text)} >
             删除
         </Button>
         </Popconfirm>
@@ -253,6 +255,13 @@ const Custom = (props) => {
   return (
     <>
       <SearchTable
+        tabList={[
+          { title: '全部', key: 0 },
+          { title: '正常', key: 1 },
+          { title: '已兑换', key: 2 },
+          { title: '待发货', key: 3 },
+          { title: '已完成', key: 4 },
+        ]}
         // scroll={{ x: 'max-content' }}
         rowKey="_id"
         STATUS_USE_ENUM={STATUS_USE_ENUM}
@@ -262,6 +271,7 @@ const Custom = (props) => {
         columns={columns}
         onTableRef={tableRef}
         defaultSearchData={defaultSearchData}
+        tableChild={tableChild}
       />
       <ModalForm
         formItemLayout={{ labelCol: { span: 6 }, wrapperCol: { span: 16 } }}

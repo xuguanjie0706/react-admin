@@ -49,7 +49,7 @@ const Search = (props) => {
           <RangePicker style={{ width: '100%' }} />
         </Form.Item>
       </Col>
-      <Col xs={24} sm={12} md={8} lg={6} xl={6} xxl={6}>
+      {/* <Col xs={24} sm={12} md={8} lg={6} xl={6} xxl={6}>
         <Form.Item
           name="status"
           label="状态"
@@ -60,7 +60,13 @@ const Search = (props) => {
             {statusUseEnum.map(item => <Option key={item[0]} value={item[0]}>{item[1]}</Option>)}
           </Select>
         </Form.Item>
-      </Col>
+      </Col> */}
+      <Form.Item
+        name="status"
+        hidden
+      >
+        <Input />
+      </Form.Item>
     </Row >
   );
 };

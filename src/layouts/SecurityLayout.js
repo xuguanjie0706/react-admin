@@ -13,7 +13,7 @@ class SecurityLayout extends React.PureComponent {
 
   async componentDidMount() {
     const { location, dispatch, isLogin } = this.props;
-    console.log(location);
+    // console.log(location);
     if (
       !isLogin &&
       (location.pathname !== '/login' && location.pathname !== '/forget')

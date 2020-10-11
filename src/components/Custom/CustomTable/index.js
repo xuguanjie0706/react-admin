@@ -66,6 +66,7 @@ class CustomTable extends Component {
         // page: data.page
       });
       const dataResourse = await request(data);
+      // console.log(dataResourse);
       this.setState({
         list: dataResourse.list || [],
         total: dataResourse.total || 0,
