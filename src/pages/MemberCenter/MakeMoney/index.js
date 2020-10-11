@@ -4,9 +4,10 @@ import api from '@/api';
 import { connect } from 'umi';
 import QRCode from 'qrcode.react';
 import pic from './assets/pic.jpg';
+import moment from 'moment';
 
 const MakeMoney = (props) => {
-  const { user: { _id: _member } } = props;
+  const { user: { _id: _member, overtime } } = props;
   const [visible, setVisible] = useState(false);
   const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
@@ -45,7 +46,7 @@ const MakeMoney = (props) => {
       <Result
         icon=""
         // status="success"
-        title="点击续费会员"
+        title={`会员有效期至${moment(overtime).format('YYYY-MM-DD')}`}
         subTitle={`按年计算，一年${(money / 100).toFixed(2)}元`}
         extra={[
           <Button loading={loading} onClick={handleClick} type="primary" key="buy">去充值</Button>,
