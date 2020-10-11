@@ -12,6 +12,7 @@ const CustomTabsTable = (props) => {
   const [trueColumns, setColumns] = useState(columns);
 
   useEffect(() => {
+    // console.log(status);
     const resultColumns = columns.filter(item => {
       if (item.type) {
         return item.type.includes(status);
@@ -20,7 +21,7 @@ const CustomTabsTable = (props) => {
       }
     });
     setColumns([...resultColumns]);
-  }, [status]);
+  }, [status, tableChild]);
 
   const callback = async (key) => {
     await setStatus(key);

@@ -26,7 +26,7 @@ const CustomTabsTable = (props) => {
     await setStatus(key);
     await setSelectedKey([]);
     form.setFieldsValue({
-      status: key === '0' ? undefined : key
+      status: key === '0' ? { $ne: '1' } : key
     });
 
     tableChild && tableChild.initData(form.getFieldsValue(), true);

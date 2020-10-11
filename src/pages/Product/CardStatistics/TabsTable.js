@@ -20,7 +20,7 @@ const CustomTabsTable = (props) => {
       }
     });
     setColumns([...resultColumns]);
-  }, [status]);
+  }, [status, tableChild]);
 
   const callback = async (key) => {
     await setStatus(key);

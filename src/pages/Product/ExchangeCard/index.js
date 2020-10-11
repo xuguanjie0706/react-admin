@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-10-12 01:08:28
+ * @lastTime: 2020-10-12 01:58:26
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Product/ExchangeCard/index.js
  * @message:权益划转
@@ -87,9 +87,9 @@ const Custom = (props) => {
     }
   };
 
-  const handleDelete = async (item) => {
+  const handleDelete = useCallback(async (item) => {
     try {
-      setDefaultData(item);
+      // setDefaultData(item);
       const r = await api[fileName].remove({ _id: item._id });
 
       if (r) {
@@ -97,9 +97,9 @@ const Custom = (props) => {
         message.success('删除成功');
       }
     } catch (error) {
-
+      console.log(error);
     }
-  };
+  }, [tableChild]);
 
   /* ******* 设置方法 ******* */
   /* 初始化 */
@@ -243,7 +243,7 @@ const Custom = (props) => {
         <Popconfirm
           title="确定要删除吗？"
           onConfirm={() => handleDelete(text)}>
-          <Button type="link" onClick={() => handleDelete(text)} >
+          <Button type="link" >
             删除
         </Button>
         </Popconfirm>

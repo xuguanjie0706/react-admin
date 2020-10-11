@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, message } from 'antd';
 import CustomSearchBtnContainer from '@/components/Custom/CustomSearchBtnContainer';
 import api from '@/api';
@@ -39,14 +39,25 @@ const Btn = props => {
       message.error('请勾选已兑换需发货的订单');
     }
   };
+  useEffect(() => {
+    console.log(form.getFieldValue('status'));
+  }, [form.getFieldValue('status')]);
+
   return (
     <>
+      {/* {console.log(form.getFieldValue('status'))} */}
+      {/* {form.getFieldValue('status') === '3' && */}
+
+      {/* } */}
+      {/* {form.getFieldValue('status') === '2' && */}
+      {/* } */}
       <Button style={{ width: 80, marginRight: 10 }} onClick={handleClick}>
         导出
       </Button>
       <Button type="dashed" style={{ width: 100 }} onClick={handleSendClick}>
         批量发货
       </Button>
+
     </>
   );
 };
