@@ -8,7 +8,7 @@ const fileName = 'ExchangeCard';
 const Btn = props => {
   // console.log(props);
 
-  const { form, selectedKey = [], tableChild } = props;
+  const { form, selectedKey = [], tableChild, type } = props;
   const handleClick = () => {
 
     const data = form.getFieldsValue();
@@ -45,18 +45,17 @@ const Btn = props => {
 
   return (
     <>
-      {/* {console.log(form.getFieldValue('status'))} */}
-      {/* {form.getFieldValue('status') === '3' && */}
+      {type === '2' &&
+        <Button type="dashed" style={{ width: 100 }} onClick={handleSendClick}>
+          批量发货
+       </Button>
+      }
+      {type === '3' &&
+        <Button style={{ width: 80, marginRight: 10 }} onClick={handleClick}>
+          导出
+      </Button>
+      }
 
-      {/* } */}
-      {/* {form.getFieldValue('status') === '2' && */}
-      {/* } */}
-      <Button style={{ width: 80, marginRight: 10 }} onClick={handleClick}>
-        导出
-      </Button>
-      <Button type="dashed" style={{ width: 100 }} onClick={handleSendClick}>
-        批量发货
-      </Button>
 
     </>
   );

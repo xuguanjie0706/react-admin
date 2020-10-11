@@ -6,7 +6,7 @@ import moment from 'moment';
 
 const { TabPane } = Tabs;
 const CustomTabsTable = (props) => {
-  const { tabList, tableChild, form, columns, setSelectedKey } = props;
+  const { tabList, tableChild, form, columns, setSelectedKey, setType } = props;
   // console.log(tableChild);
   const [status, setStatus] = useState('2');
   const [trueColumns, setColumns] = useState(columns);
@@ -25,6 +25,7 @@ const CustomTabsTable = (props) => {
   const callback = async (key) => {
     await setStatus(key);
     await setSelectedKey([]);
+    await setType(key);
     form.setFieldsValue({
       status: key === '0' ? { $ne: '1' } : key
     });

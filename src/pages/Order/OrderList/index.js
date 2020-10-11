@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-10-11 21:09:48
+ * @lastTime: 2020-10-12 02:13:32
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Order/OrderList/index.js
  * @message:权益划转
@@ -34,6 +34,7 @@ const Custom = (props) => {
   const [sendChild, setSendChild] = useState(null); // 配送弹窗
   const [selectedKey, setSelectedKey] = useState([]); // 选择列表
   const [defaultData, setDefaultData] = useState({ id: 0 }); // 新增编辑默认值
+  const [type, setType] = useState('2');
 
   /* ******* 设置属性 *******  */
 
@@ -85,7 +86,7 @@ const Custom = (props) => {
     }
   };
 
-  const rowSelection = {
+  const rowSelection = type === '2' ? {
     selections: true,
     onChange: (selectedRowKeys, selectedRows) => {
       console.log(selectedRowKeys);
@@ -93,7 +94,7 @@ const Custom = (props) => {
       // setSelectedRowsData(selectedRows);
     },
     selectedRowKeys: selectedKey,
-  };
+  } : null;
 
   /* ******* 设置方法 ******* */
   /* 初始化 */
@@ -213,6 +214,8 @@ const Custom = (props) => {
         rowSelection={rowSelection}
         selectedKey={selectedKey}
         setSelectedKey={setSelectedKey}
+        type={type}
+        setType={setType}
       />
       <SendForm
         formItemLayout={{ labelCol: { span: 6 }, wrapperCol: { span: 16 } }}
