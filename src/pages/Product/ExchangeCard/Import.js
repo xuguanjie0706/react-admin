@@ -66,7 +66,7 @@ const CustomForm = (props) => {
       <Form.Item
         label="过期时间"
         name="overtime"
-        initialValue={moment().add(1, 'year')}
+        initialValue={moment(moment().format('YYYY-MM-DD') + '00:00:00').add(1, 'year')}
         rules={[{ required: true, message: '请选择过期时间' }]}
       >
         <DatePicker style={{ width: '100%' }} />

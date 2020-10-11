@@ -1,9 +1,9 @@
 import React from 'react';
-import { Input, Form, Row, Col, Select } from 'antd';
+import { Input, Form, Row, Col, Select, DatePicker } from 'antd';
 // import DateFilter from '@/components/CustomFormItem/DateFilter';
 // import SearchSelect from '@/components/CustomApiFormItem/SearchSelect';
-// import moment from 'moment';
-
+import moment from 'moment';
+const { RangePicker } = DatePicker;
 const { Option } = Select;
 const Search = (props) => {
   const { STATUS_USE_ENUM = [], form, defaultSearchData } = props;
@@ -41,6 +41,23 @@ const Search = (props) => {
           <Select allowClear placeholder="请选择状态" >
             {statusUseEnum.map(item => <Option key={item[0]} value={item[0]}>{item[1]}</Option>)}
           </Select>
+        </Form.Item>
+      </Col>
+      <Col xs={24} sm={12} md={8} lg={6} xl={6} xxl={6}>
+        <Form.Item
+          name="createdAt"
+          label="时间"
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+          getValueFromEvent={(values) => {
+            console.log(values);
+            if (values) {
+              return [moment(moment(values[0]).format('YYYY-MM-DD') + ' 00:00:00'), moment(moment(values[1]).format('YYYY-MM-DD') + ' 23:59:59')];
+            }
+            return values;
+          }}
+        >
+          <RangePicker />
         </Form.Item>
       </Col>
     </Row >
