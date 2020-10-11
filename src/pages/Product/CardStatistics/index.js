@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-10-11 12:32:48
+ * @lastTime: 2020-10-11 16:54:23
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Product/CardStatistics/index.js
  * @message:权益划转
@@ -141,10 +141,11 @@ const Custom = (props) => {
           title="确定要该操作吗？"
           onConfirm={() => handleDelete({
             name: text._id,
+            newName: text._id,
             isLook: false
           })}>
           <Button type="link" >
-            不关注
+            停用
           </Button>
         </Popconfirm>
       </>}
@@ -164,10 +165,11 @@ const Custom = (props) => {
           title="确定要该操作吗？"
           onConfirm={() => handleDelete({
             name: text._id,
+            newName: text._id,
             isLook: true
           })}>
           <Button type="link" >
-            关注
+            启用
           </Button>
         </Popconfirm>
       </>}
@@ -180,7 +182,7 @@ const Custom = (props) => {
       <SearchTable
         tabList={[
           { title: '常用卡', key: 1 },
-          { title: '失效卡', key: 0 },
+          { title: '停用卡', key: 0 },
         ]}
         rowKey="_id"
         isUser={isUser}
