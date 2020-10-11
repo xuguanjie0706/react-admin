@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-10-11 11:09:18
+ * @lastTime: 2020-10-11 16:23:28
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Product/Goods/index.js
  * @message:权益划转
@@ -123,6 +123,8 @@ const Custom = (props) => {
       dataIndex: 'value',
       key: 'value',
       align: 'center',
+      width: 250,
+      ellipsis: true
     },
     {
       title: '图片',
