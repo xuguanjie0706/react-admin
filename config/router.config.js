@@ -82,7 +82,7 @@ export default [
             {
               path: "CardStatistics",
               authority: 'CardStatistics',
-              name: "卡片统计",
+              name: "卡片分类",
               component: "@/pages/Product/CardStatistics"
             },
             {

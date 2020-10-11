@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-10-11 10:03:33
+ * @lastTime: 2020-10-11 12:32:48
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Product/CardStatistics/index.js
  * @message:权益划转
@@ -179,8 +179,8 @@ const Custom = (props) => {
     <>
       <SearchTable
         tabList={[
-          { title: '关注类', key: 1 },
-          { title: '不关注类', key: 0 },
+          { title: '常用卡', key: 1 },
+          { title: '失效卡', key: 0 },
         ]}
         rowKey="_id"
         isUser={isUser}
