@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-10-09 14:40:43
+ * @lastTime: 2020-10-11 11:08:10
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Order/OrderList/index.js
  * @message:权益划转
@@ -197,7 +197,7 @@ const Custom = (props) => {
       <SearchTable
         tabList={[
           { title: '已兑换', key: 2 },
-          { title: '已发货', key: 3 },
+          { title: '待发货', key: 3 },
           { title: '已完成', key: 4 },
         ]}
         fileName={fileName}
