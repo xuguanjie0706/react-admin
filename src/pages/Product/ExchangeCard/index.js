@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-10-11 11:16:55
+ * @lastTime: 2020-10-11 14:04:26
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Product/ExchangeCard/index.js
  * @message:权益划转
@@ -139,14 +139,14 @@ const Custom = (props) => {
       dataIndex: 'name',
       key: 'name',
       align: 'center',
-      width: 100,
+      // width: 100,
       fixed: 'left'
     }, {
       title: '卡号',
       dataIndex: 'card',
       key: 'card',
       align: 'center',
-      width: 200,
+      // width: 200,
       fixed: 'left'
     },
     {
@@ -154,7 +154,7 @@ const Custom = (props) => {
       dataIndex: 'password',
       key: 'password',
       align: 'center',
-      width: 100,
+      // width: 100,
     },
     // {
     //   title: '描述',
@@ -169,17 +169,17 @@ const Custom = (props) => {
       dataIndex: '_goods',
       key: '_goods',
       align: 'center',
-      width: 120,
+      // width: 120,
       render: text => text.map(item => <Tag key={item.name}>{item.name}</Tag>)
     },
-    {
-      title: '已兑换商品',
-      dataIndex: '_usegoods',
-      key: '_usegoods',
-      align: 'center',
-      width: 120,
-      render: text => text ? text.name : '-'
-    },
+    // {
+    //   title: '已兑换商品',
+    //   dataIndex: '_usegoods',
+    //   key: '_usegoods',
+    //   align: 'center',
+    //   width: 120,
+    //   render: text => text ? text.name : '-'
+    // },
     // {
     //   title: '收货信息',
     //   dataIndex: 'address',
@@ -202,7 +202,7 @@ const Custom = (props) => {
       dataIndex: 'overtime',
       key: 'overtime',
       align: 'center',
-      width: 120,
+      // width: 120,
       render: text => text && moment(text).format('YYYY-MM-DD HH:mm')
     },
     {
@@ -210,7 +210,7 @@ const Custom = (props) => {
       dataIndex: 'createdAt',
       key: 'createdAt',
       align: 'center',
-      width: 120,
+      // width: 120,
       render: text => text && moment(text).format('YYYY-MM-DD HH:mm')
     },
     {
@@ -219,7 +219,7 @@ const Custom = (props) => {
       key: 'status',
       align: 'center',
       fixed: 'right',
-      width: 80,
+      // width: 80,
       render: text => STATUS_USE_ENUM[text]
     },
     {
@@ -253,7 +253,7 @@ const Custom = (props) => {
   return (
     <>
       <SearchTable
-        scroll={{ x: 'max-content' }}
+        // scroll={{ x: 'max-content' }}
         rowKey="_id"
         STATUS_USE_ENUM={STATUS_USE_ENUM}
         request={api[fileName].page}
