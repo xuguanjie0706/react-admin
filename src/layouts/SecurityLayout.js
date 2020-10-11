@@ -1,6 +1,6 @@
 import React from 'react';
 import { PageLoading } from '@ant-design/pro-layout';
-// import { Redirect, connect } from 'umi';
+import { Redirect, connect } from 'umi';
 // import { stringify } from 'querystring';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
@@ -10,7 +10,16 @@ class SecurityLayout extends React.PureComponent {
     isReady: false,
   };
 
-  componentDidMount() {
+  async componentDidMount() {
+    const { location, dispatch, isLogin } = this.props;
+    if (
+      !isLogin &&
+      (location.pathname !== 'login' || location.pathname !== 'forget')
+    ) {
+      await dispatch({
+        type: 'user/check',
+      });
+    }
     this.setState({
       isReady: true,
     });
@@ -34,8 +43,14 @@ class SecurityLayout extends React.PureComponent {
     //   return <Redirect to={`/user/login?${queryString}`} />;
     // }
 
-    return <ConfigProvider locale={zhCN}>{children}</ConfigProvider>;
+    return (
+      <>
+        {isReady && <ConfigProvider locale={zhCN}>{children}</ConfigProvider>}
+      </>
+    );
   }
 }
-
-export default SecurityLayout;
+export default connect(({ user }) => ({
+  user: user.data,
+  isLogin: user.status,
+}))(SecurityLayout);

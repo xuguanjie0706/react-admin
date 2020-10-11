@@ -31,6 +31,24 @@ const Search = (props) => {
           <Input allowClear placeholder="请输入卡号" />
         </Form.Item>
       </Col>
+
+      <Col xs={24} sm={12} md={8} lg={12} xl={12} xxl={6}>
+        <Form.Item
+          name="createdAt"
+          label="时间"
+          labelCol={{ sm: { span: 8 }, md: { span: 8, }, lg: { span: 4, }, }}
+          wrapperCol={{ sm: { span: 16 }, md: { span: 16, }, lg: { span: 20, }, }}
+          getValueFromEvent={(values) => {
+            // console.log(values);
+            if (values) {
+              return [moment(moment(values[0]).format('YYYY-MM-DD') + ' 00:00:00'), moment(moment(values[1]).format('YYYY-MM-DD') + ' 23:59:59')];
+            }
+            return values;
+          }}
+        >
+          <RangePicker style={{ width: '100%' }} />
+        </Form.Item>
+      </Col>
       <Col xs={24} sm={12} md={8} lg={6} xl={6} xxl={6}>
         <Form.Item
           name="status"
@@ -41,23 +59,6 @@ const Search = (props) => {
           <Select allowClear placeholder="请选择状态" >
             {statusUseEnum.map(item => <Option key={item[0]} value={item[0]}>{item[1]}</Option>)}
           </Select>
-        </Form.Item>
-      </Col>
-      <Col xs={24} sm={12} md={8} lg={6} xl={6} xxl={6}>
-        <Form.Item
-          name="createdAt"
-          label="时间"
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
-          getValueFromEvent={(values) => {
-            console.log(values);
-            if (values) {
-              return [moment(moment(values[0]).format('YYYY-MM-DD') + ' 00:00:00'), moment(moment(values[1]).format('YYYY-MM-DD') + ' 23:59:59')];
-            }
-            return values;
-          }}
-        >
-          <RangePicker />
         </Form.Item>
       </Col>
     </Row >

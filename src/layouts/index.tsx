@@ -102,17 +102,6 @@ const Custom = (props: any) => {
       }
     });
   };
-  const initData = async () => {
-    if (!user.status) {
-      const _r = await dispatch({
-        type: 'user/check',
-      });
-    }
-    // console.log(user);
-  };
-  useEffect(() => {
-    initData();
-  }, []);
 
   useEffect(() => {
     const r = getCustomRoute(route.routes, user.roles);
