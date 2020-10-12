@@ -123,7 +123,7 @@ class CustomTable extends Component {
       showQuickJumper: true,
       showTotal
     };
-    console.log(options);
+    // console.log(options);
     // const rowSelection = {
     //   onChange: (selectedRowKeys) => {
     //     this.setState({
