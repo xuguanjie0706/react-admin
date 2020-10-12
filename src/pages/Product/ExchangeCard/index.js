@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-10-12 11:30:56
+ * @lastTime: 2020-10-12 18:52:25
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Product/ExchangeCard/index.js
  * @message:权益划转
@@ -30,7 +30,7 @@ const AddressView = ({ mobile, people, mainArea, area }) => {
 };
 
 const Custom = (props) => {
-  const { defaultSearchData, _id: memberId } = props;
+  const { defaultSearchData, _id: memberId, isUser } = props;
 
   /* ******* 设置属性 *******  */
   const [modelChild, setModelChild] = useState(null); // 新增弹窗
@@ -262,6 +262,7 @@ const Custom = (props) => {
           { title: '待发货', key: 3 },
           { title: '已完成', key: 4 },
         ]}
+        isUser={isUser}
         // scroll={{ x: 'max-content' }}
         rowKey="_id"
         STATUS_USE_ENUM={STATUS_USE_ENUM}
@@ -272,6 +273,7 @@ const Custom = (props) => {
         onTableRef={tableRef}
         defaultSearchData={defaultSearchData}
         tableChild={tableChild}
+        showTotal={(total, range) => `总共${total}条`}
       />
       <ModalForm
         formItemLayout={{ labelCol: { span: 6 }, wrapperCol: { span: 16 } }}
@@ -312,5 +314,6 @@ const Custom = (props) => {
 };
 
 export default connect(({ user }) => ({
-  _id: user._id
+  _id: user._id,
+  isUser: user.data.isUser
 }))(Custom);

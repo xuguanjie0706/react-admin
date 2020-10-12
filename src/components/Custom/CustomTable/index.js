@@ -101,6 +101,16 @@ class CustomTable extends Component {
 
   render() {
     const { count, total, list, loading, page } = this.state;
+
+    const {
+      columns,
+      expandedRowRender,
+      defaultExpandAllRows,
+      FooterComponent,
+      rowKey = '_id',
+      showTotal = () => { },
+      ...options
+    } = this.props;
     const paginationData = {
       defaultCurrent: 1,
       current: page,
@@ -111,15 +121,9 @@ class CustomTable extends Component {
       onChange: this.pageChange,
       size: 'middle',
       showQuickJumper: true,
+      showTotal
     };
-    const {
-      columns,
-      expandedRowRender,
-      defaultExpandAllRows,
-      FooterComponent,
-      rowKey = '_id',
-      ...options
-    } = this.props;
+    console.log(options);
     // const rowSelection = {
     //   onChange: (selectedRowKeys) => {
     //     this.setState({
