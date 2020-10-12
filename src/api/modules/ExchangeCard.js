@@ -236,7 +236,7 @@ export const orderSend = (data = {}) => {
 };
 /**
  * @memberof apis
- * @description: 首页统计
+ * @description: 首页统计商户
  * @function homeStatistics
  * @param {type}  传入参数
  * @author 许(后端对接人名称)
@@ -247,6 +247,23 @@ export const orderSend = (data = {}) => {
 export const homeStatistics = (data = {}) => {
   return request.post({
     url: 'homeStatistics',
+    data,
+    gateway
+  });
+};
+/**
+ * @memberof apis
+ * @description: 首页统计管理员
+ * @function homeStatisticsAdmin
+ * @param {type}  传入参数
+ * @author 许(后端对接人名称)
+ * @see {@link https://t.com/doc/MrD0qNADV}
+ * @return {object} 接口对象
+ */
+
+export const homeStatisticsAdmin = (data = {}) => {
+  return request.post({
+    url: 'homeStatisticsAdmin',
     data,
     gateway
   });

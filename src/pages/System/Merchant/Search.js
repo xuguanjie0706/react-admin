@@ -21,6 +21,16 @@ const Search = (props) => {
           <Input allowClear placeholder="请输入账号名称" />
         </Form.Item>
       </Col>
+      <Col xs={24} sm={12} md={8} lg={6} xl={6} xxl={6}>
+        <Form.Item
+          name="mobile"
+          label="手机号"
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+        >
+          <Input allowClear placeholder="请输入手机号" />
+        </Form.Item>
+      </Col>
     </Row >
   );
 };
