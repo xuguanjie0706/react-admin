@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-09-29 10:44:40
+ * @lastTime: 2020-10-12 17:36:27
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/System/Merchant/index.js
  * @message:权益划转
@@ -15,6 +15,7 @@ import api from '@/api';
 import { connect } from 'umi';
 import Search from './Search';
 import ModalForm from './Form';
+import UpForm from './UpForm';
 import md5 from 'md5';
 import { USER_STATUS_ENUM } from '@/utils/enum';
 import moment from 'moment';
@@ -25,6 +26,7 @@ const Custom = (props) => {
 
   /* ******* 设置属性 *******  */
   const [modelChild, setModelChild] = useState(null); // 新增弹窗
+  const [upChild, setUpChild] = useState(null); // 新增弹窗
   const [tableChild, setTableChild] = useState(null); // 列表弹窗
   const [defaultData, setDefaultData] = useState({ id: 0 }); // 新增编辑默认值
 
@@ -33,6 +35,9 @@ const Custom = (props) => {
   /* ******* 设置实例 *******  */
   const modelRef = (ref) => {
     setModelChild(ref);
+  };
+  const upRef = (ref) => {
+    setUpChild(ref);
   };
 
   const tableRef = (ref) => {
@@ -54,6 +59,20 @@ const Custom = (props) => {
       modelChild.handleShow();
     }
   };
+
+  const handleUp = async (item) => {
+    // if (item._id) {
+    //   const r = await api.User.getonebysimple({ _id: item._id });
+    //   setDefaultData(r);
+    // } else {
+
+    // }
+    setDefaultData(item);
+    if (upChild) {
+      upChild.handleShow();
+    }
+  };
+
 
   const handleDelete = async (item) => {
     try {
@@ -149,6 +168,10 @@ const Custom = (props) => {
           编辑
         </Button>
         <Divider type="vertical" ></Divider>
+        <Button type="link" onClick={() => handleUp(text)}>
+          续期
+        </Button>
+        <Divider type="vertical" ></Divider>
         <Popconfirm
           title="确定要删除吗？"
           onConfirm={() => handleDelete(text)}>
@@ -179,6 +202,16 @@ const Custom = (props) => {
           const _data = { ...values, password: values.password && md5(values.password), status: true, overtime: moment().add(7, 'day').valueOf() };
           return api.User.editoradd(_data);
         }}
+        callback={() => {
+          tableChild && tableChild.initData();
+        }}
+      />
+      <UpForm
+        formItemLayout={{ labelCol: { span: 6 }, wrapperCol: { span: 16 } }}
+        onRef={upRef}
+        title={'设置过期时间'}
+        defaultData={defaultData}
+        request={api.User.renewMember}
         callback={() => {
           tableChild && tableChild.initData();
         }}
