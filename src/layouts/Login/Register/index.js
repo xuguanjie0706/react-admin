@@ -46,16 +46,19 @@ const LoginByThirdView = ({ history, user, dispatch }) => {
         type: 'user/login',
         payload: _data,
       });
-      if (
-        moment(r.overtime).valueOf() <
-        moment()
-          .add(7, 'day')
-          .valueOf()
-      ) {
-        Modal.info({
-          title: '温馨提醒',
-          content: '当前会员有效提临近或已过期，请去充值，以免给您造成损失',
-        });
+      if (r.overtime && +r.isUser !== 1) {
+        if (
+
+          moment(r.overtime).valueOf() <
+          moment()
+            .add(7, 'day')
+            .valueOf()
+        ) {
+          Modal.info({
+            title: '温馨提醒',
+            content: '当前会员有效提临近或已过期，请去充值，以免给您造成损失',
+          });
+        }
       }
 
       if (r) {
