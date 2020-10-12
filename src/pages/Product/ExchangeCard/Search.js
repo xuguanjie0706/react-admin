@@ -35,7 +35,7 @@ const Search = (props) => {
       <Col xs={24} sm={12} md={8} lg={12} xl={12} xxl={6}>
         <Form.Item
           name="createdAt"
-          label="时间"
+          label="发卡时间"
           labelCol={{ sm: { span: 8 }, md: { span: 8, }, lg: { span: 4, }, }}
           wrapperCol={{ sm: { span: 16 }, md: { span: 16, }, lg: { span: 20, }, }}
           getValueFromEvent={(values) => {

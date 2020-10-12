@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-05-23 10:40:31
- * @lastTime: 2020-10-12 01:58:26
+ * @lastTime: 2020-10-12 11:30:56
  * @LastAuthor: xgj
  * @FilePath: /admin/src/pages/Product/ExchangeCard/index.js
  * @message:权益划转
@@ -208,7 +208,7 @@ const Custom = (props) => {
       render: text => text && moment(text).format('YYYY-MM-DD HH:mm')
     },
     {
-      title: '新增时间',
+      title: '发卡时间',
       dataIndex: 'createdAt',
       key: 'createdAt',
       align: 'center',
