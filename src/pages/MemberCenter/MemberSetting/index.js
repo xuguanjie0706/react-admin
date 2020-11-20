@@ -58,6 +58,11 @@ const MakeMoney = (props) => {
               <Input placeholder="请输入客服联系方式" />
             </Form.Item>
           </Descriptions.Item>
+          <Descriptions.Item label="提示信息" span={4} >
+            <Form.Item name="desc" >
+              <Input placeholder="请输入提示信息" />
+            </Form.Item>
+          </Descriptions.Item>
           {/* <Descriptions.Item label="会员联系方式" >
             {phone}
           </Descriptions.Item>

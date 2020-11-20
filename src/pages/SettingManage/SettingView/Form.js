@@ -42,15 +42,6 @@ const CustomForm = (props) => {
       >
         <Input allowClear placeholder="请输入名称" />
       </Form.Item>
-
-
-      <Form.Item
-        label="内容"
-        name="value"
-        rules={[{ required: true, message: '请输入内容' }]}
-      >
-        <Input allowClear placeholder="请输入内容" />
-      </Form.Item>
       <Form.Item
         label="单位"
         name="unit"
@@ -60,6 +51,15 @@ const CustomForm = (props) => {
           {unitEnum.map(item => <Option key={item[1]} value={item[1]}>{item[1]}</Option>)}
         </Select>
       </Form.Item>
+
+      <Form.Item
+        label="内容"
+        name="value"
+        rules={[{ required: true, message: '请输入内容' }]}
+      >
+        <Input.TextArea rows={10} allowClear placeholder="请输入内容" />
+      </Form.Item>
+
     </>
   );
 };
