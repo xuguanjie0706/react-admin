@@ -61,12 +61,12 @@ export default [
               name: "参数配置",
               component: "@/pages/SettingManage/SettingView"
             },
-              // {
-              //   path: "pictureList",
-              //   authority: 'picture',
-              //   name: "图片配置",
-              //   component: "@/pages/SettingManage/PictureView"
-              // },
+            {
+              path: "articleList",
+              authority: 'Article',
+              name: "文章列表",
+              component: "@/pages/SettingManage/ArticleView"
+            },
             ]
           },
           {

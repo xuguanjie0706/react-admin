@@ -1,7 +1,7 @@
 /*
  * @Author: xgj
  * @since: 2020-06-08 13:52:17
- * @lastTime: 2020-09-29 19:17:15
+ * @lastTime: 2020-11-21 00:36:21
  * @LastAuthor: xgj
  * @FilePath: /admin/src/api/index.js
  * @message:
@@ -25,6 +25,7 @@ import * as MemberSetting from './modules/MemberSetting';
 import * as Weixin from './modules/Weixin';
 import * as PaymentFlow from './modules/PaymentFlow';
 import * as Pic from './modules/Pic';
+import * as Article from './modules/Article';
 
 
 export default {
@@ -40,5 +41,5 @@ export default {
   Weixin,
   PaymentFlow,
   Pic,
-
+  Article,
 };

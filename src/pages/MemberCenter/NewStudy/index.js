@@ -10,10 +10,11 @@ const MakeMoney = () => {
     const r = await api.Config.getonebysimple({
       name: '新手教程'
     });
+    console.log(r);
     if (r && r !== true) {
       setUrl(r);
     }
-    const result = await api.Config.getonebysimple({
+    const result = await api.Article.getonebysimple({
       name: '新手内容'
     });
     if (result && result !== true) {
@@ -31,10 +32,9 @@ const MakeMoney = () => {
         <video width="100%" controls src={url ? url.value : 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4'}></video>
       </Card>
       <Card style={{ marginTop: 10 }} title="文字教程">
-        <pre
-          style={{ wordWrap: 'break-word', whiteSpace: 'pre-wrap', width: '100%' }}>
-          {desc.value}
-        </pre>
+        <div
+          dangerouslySetInnerHTML={{ __html: desc.value }}>
+        </div>
       </Card>
     </>
   );
