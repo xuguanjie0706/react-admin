@@ -31,7 +31,8 @@ const MakeMoney = () => {
         <video width="100%" controls src={url ? url.value : 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4'}></video>
       </Card>
       <Card style={{ marginTop: 10 }} title="文字教程">
-        <pre>
+        <pre
+          style={{ wordWrap: 'break-word', whiteSpace: 'pre-wrap', width: '100%' }}>
           {desc.value}
         </pre>
       </Card>
