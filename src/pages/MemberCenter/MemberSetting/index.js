@@ -70,7 +70,7 @@ const MakeMoney = (props) => {
             {moment(overtime).format('YYYY-MM-DD HH:mm:ss')}
           </Descriptions.Item> */}
           <Descriptions.Item label="微信端地址" span={4} >
-            {config.webUrl + _id}
+            {location.origin + '/mobile/#/Exchange/' + _id}
           </Descriptions.Item>
 
           {/* <Descriptions.Item label="提示信息" >
