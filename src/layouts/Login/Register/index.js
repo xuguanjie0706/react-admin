@@ -273,6 +273,9 @@ const LoginByThirdView = ({ history, user, dispatch }) => {
           {costomForm}
         </Form>
       </div>
+      <div className="login-beian">
+        <a href="http://beian.miit.gov.cn/">沪ICP备17031826</a>
+      </div>
     </div>
   );
 
